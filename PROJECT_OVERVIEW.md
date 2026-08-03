@@ -53,13 +53,16 @@ scopes its contribution honestly layer by layer rather than claiming full autono
   active, the rover travelled 13.15 m (73% of the straight-line distance to a real,
   hazard-crossing goal), replanning live against the perception-derived costmap 58
   times.
-- **Physical hardware**: the ExoMy platform has been assembled and its core drive,
-  steering, and camera subsystems verified on physical hardware (in the lab and on
-  sand).
+- **Physical hardware**: the ExoMy platform has been assembled, and the full autonomous
+  stack (camera-based terrain classification, LiDAR obstacle avoidance, IMU tilt
+  sensing, reactive exploration) has been run and validated on physical hardware —
+  including outdoor sand testing and a printed Mars-terrain backdrop test — driving
+  itself, with no manual remote control, across dozens of real test runs.
 
 ## Honest limitations
 
-This is reported explicitly rather than glossed over:
+This is reported explicitly rather than glossed over. Written so it's understandable
+even without a robotics background:
 
 - Simulation results do not transfer perfectly to the real world (a sim-to-real
   perception gap is present and measured, not assumed away).
@@ -70,6 +73,27 @@ This is reported explicitly rather than glossed over:
   (classify, modulate speed, stop on hazard, recover from being stuck) — it is not yet
   a system that can be given a destination and reliably navigate there fully
   autonomously on real hardware.
+- **The vision model struggles to recognise large rocks specifically** (it reliably
+  tells apart flat rock, sand, and loose soil, but isolated boulders are much harder).
+  This traces back to the training data having far fewer example images of large rocks
+  than of the other terrain types — not a flaw in the AI model itself. As a safety
+  measure, whenever the model is unsure it defaults to stopping the rover rather than
+  guessing, so this weakness does not turn into an unsafe decision.
+- **On everyday indoor surfaces the model doesn't know it's "out of its depth."**
+  Trained only on real Mars/Mars-like imagery, it will still confidently label an
+  office floor or wall as one of its known terrain types (usually "soil") rather than
+  flagging "I don't recognise this." This is a known limitation of the approach and
+  is discussed as a direction for future work rather than something the current system
+  claims to solve.
+- **The distance sensor (LiDAR) only "sees" objects at one fixed height.** It reliably
+  detects obstacles at its own scan height, but can miss things that sit entirely
+  above or below that line — for example, thin furniture legs, or an obstacle on the
+  far side of a small rise in the ground that tips the sensor's view up and over it.
+  Two such misses were observed directly during hardware testing (a low obstacle and a
+  small rise). A rover intended for more cluttered, uneven real-world environments
+  would need a sensor that scans more than one height (e.g. a 3D LiDAR or a stereo
+  depth camera) to close this gap; that is out of scope for this project's hardware
+  budget and is noted as future work.
 
 ## Tech stack
 
