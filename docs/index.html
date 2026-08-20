@@ -702,8 +702,8 @@
         <span data-lang-th>วิทยานิพนธ์นี้ตรวจว่าความรู้ที่ย้ายมานั้นดีพอสำหรับโรเวอร์ราคาประหยัดหรือไม่ และการ pretrain แบบไหนย้ายมาได้ดีที่สุด เมื่อไม่เทรนตัวเครือข่ายซ้ำเลย การทดลองสิบกลุ่มวัดโมเดล 22 แบบ จากแปดแนวทางการ pretrain บนชุดข้อมูล AI4Mars จากนั้นนำโมเดลเล็กที่ได้ผลดีที่สุดไปติดตั้งจริงบน Raspberry Pi 4 ทดสอบทั้งใน Gazebo และบนโรเวอร์ ExoMy ตัวจริง</span>
       </p>
       <p>
-        <span data-lang-en>CLIP reaches 34.8% zero-shot accuracy with no labelled Mars data. DINO self-supervised pretraining proves the most effective of the eight. Every DINO Vision Transformer variant reaches at least 89.9% at 1,000 labels per class, and the eleven highest-ranked variants are all DINO or DINO ensembles, because DINO learns view-invariant texture rather than semantic categories. The best competing paradigm reaches 89.55%, and contrastive and autoregressive pretraining stop at 87.8%. A two-model DINOv2 ensemble reaches 94.43%, within 2.24 points of the 96.67% supervised baseline. The deployed model reaches 90.24%, runs at 570 ms per image on the rover's processor, and never passes an unsafe misclassification through in Gazebo despite only 60% terrain accuracy, because a calibrated confidence threshold turns uncertainty into a safe stop. On real camera imagery the failure is specific rather than general. Real soil is classified perfectly and real sand reaches 73.9%, but big rocks are read as soil or sand every time, and the safety guarantee does not survive that one class. Pretrained features alone are therefore not enough for the field without further adaptation.</span>
-        <span data-lang-th>CLIP ทำได้ 34.8% แบบ zero-shot โดยไม่ใช้ข้อมูลดาวอังคารที่มี label เลย การ pretrain แบบ DINO ซึ่งเป็น self-supervised ได้ผลดีที่สุดในแปดแนวทาง Vision Transformer สาย DINO ทุกตัวทำได้อย่างน้อย 89.9% ที่ 1,000 label ต่อคลาส และสิบเอ็ดอันดับแรกเป็น DINO หรือ ensemble ของ DINO ทั้งหมด เหตุผลคือ DINO เรียนเท็กซ์เจอร์ที่ไม่เปลี่ยนตามมุมมอง ไม่ได้เรียนหมวดหมู่เชิงความหมาย แนวทางคู่แข่งที่ดีที่สุดทำได้ 89.55% ส่วน contrastive และ autoregressive ตันอยู่ที่ 87.8% ถ้าเอา DINOv2 สองตัวมาทำ ensemble จะได้ 94.43% ห่างจาก baseline แบบ supervised เต็มรูปแบบที่ 96.67% อยู่ 2.24 จุด โมเดลที่นำไปติดตั้งจริงทำได้ 90.24% ใช้เวลา 570 มิลลิวินาทีต่อภาพบนหน่วยประมวลผลของโรเวอร์ และใน Gazebo ไม่เคยปล่อยให้การจำแนกผิดที่อันตรายหลุดออกไปเลยสักครั้ง ทั้งที่ความแม่นยำด้านพื้นผิวอยู่แค่ 60% เพราะเกณฑ์ความมั่นใจที่ผ่านการ calibrate เปลี่ยนความไม่แน่ใจให้กลายเป็นการหยุด พอมาทดสอบกับภาพจากกล้องจริง ความล้มเหลวกลับกระจุกอยู่ที่คลาสเดียว ไม่ได้พังทั้งกระดาน ดินจริงจำแนกถูกทั้งหมด ทรายจริงได้ 73.9% แต่หินก้อนใหญ่ถูกอ่านเป็นดินหรือทรายทุกครั้ง และการรับประกันความปลอดภัยก็ไปไม่รอดกับคลาสนี้ ฟีเจอร์จากการ pretrain เพียงอย่างเดียวจึงยังไม่พอสำหรับงานภาคสนาม ถ้าไม่ปรับเพิ่มอีก</span>
+        <span data-lang-en>CLIP reaches 34.8% zero-shot accuracy with no labelled Mars data. DINO self-supervised pretraining is the most effective of the eight, reaching 89.9–94.43% against 89.55% for the best competitor. A two-model DINOv2 ensemble reaches 94.43%, within 2.24 points of the 96.67% supervised baseline. The deployed model reaches 90.24%, runs at 570 ms per image, and never passes an unsafe call through in Gazebo despite only 60% terrain accuracy, because a calibrated threshold turns uncertainty into a safe stop. On real camera imagery, soil and sand transfer but big rock fails every time, and the safety guarantee does not survive that one class.</span>
+        <span data-lang-th>CLIP ทำได้ 34.8% แบบ zero-shot โดยไม่ใช้ข้อมูลดาวอังคารเลย การ pretrain แบบ DINO ได้ผลดีที่สุดในแปดแนวทาง ทำได้ 89.9–94.43% เทียบกับ 89.55% ของแนวทางคู่แข่งที่ดีที่สุด DINOv2 สองตัวทำ ensemble ได้ 94.43% ห่างจาก baseline แบบ supervised ที่ 96.67% อยู่ 2.24 จุด โมเดลที่ติดตั้งจริงทำได้ 90.24% ใช้เวลา 570 มิลลิวินาทีต่อภาพ และใน Gazebo ไม่เคยปล่อยการจำแนกผิดที่อันตรายหลุดออกไปเลย ทั้งที่ความแม่นยำพื้นผิวแค่ 60% เพราะเกณฑ์ความมั่นใจที่ calibrate แล้วเปลี่ยนความไม่แน่ใจเป็นการหยุด บนภาพกล้องจริง ดินและทรายยังใช้ได้ แต่หินก้อนใหญ่พลาดทุกครั้ง และการรับประกันความปลอดภัยไปไม่รอดกับคลาสนี้</span>
       </p>
       <p>
         <span data-lang-en>An extended reactive-safety stack, verified in Gazebo and on hardware, adds hazard recovery, sensor fusion, path planning, and an unattended explore-and-return mission.</span>
@@ -760,8 +760,8 @@
         </svg>
       </div>
       <figcaption>
-        <span data-lang-en>The gap this thesis works in. A round trip to an operator costs between 6 and 44 minutes; the rover's own perception loop closes in 570 milliseconds, roughly three thousand times faster.</span>
-        <span data-lang-th>ช่องว่างที่งานนี้เข้าไปอุด ถามผู้ควบคุมทีหนึ่งไปกลับใช้เวลา 6 ถึง 44 นาที ส่วนลูปการรับรู้บนตัวโรเวอร์ปิดรอบใน 570 มิลลิวินาที เร็วกว่าราวสามพันเท่า</span>
+        <span data-lang-en>Round trip to an operator: 6–44 minutes. The rover's own loop: 570 ms, about 3,000× faster.</span>
+        <span data-lang-th>ผู้ควบคุมตอบกลับใช้ 6–44 นาที ส่วนลูปบนโรเวอร์ปิดรอบใน 570 มิลลิวินาที เร็วกว่าราวสามพันเท่า</span>
       </figcaption>
     </figure>
 
@@ -860,16 +860,16 @@
         </svg>
       </div>
       <figcaption>
-        <span data-lang-en>Everything from the camera to the speed command, with the one trained component marked. The dashed box is the only part that ever saw a Mars label.</span>
-        <span data-lang-th>เส้นทางทั้งหมดตั้งแต่กล้องจนถึงคำสั่งความเร็ว พร้อมทำเครื่องหมายส่วนเดียวที่ถูกเทรน กรอบเส้นประคือส่วนเดียวที่เคยเห็น label ของดาวอังคาร</span>
+        <span data-lang-en>Camera to speed command. Only the dashed box was ever trained on Mars labels.</span>
+        <span data-lang-th>จากกล้องถึงคำสั่งความเร็ว มีแค่กรอบเส้นประเท่านั้นที่ถูกเทรนด้วย label ดาวอังคาร</span>
       </figcaption>
     </figure>
 
     <figure class="plot">
       <img src="assets/label_efficiency_curve.jpg" alt="Accuracy rising with the number of labelled images per class, flattening near 1,000" />
       <figcaption>
-        <span data-lang-en>How many labels the thin layer actually needs. Ten labelled images per class already reach 60.8%; a thousand reach 90.2%, and the curve is flat well before that.</span>
-        <span data-lang-th>ชั้นบาง ๆ ด้านบนต้องใช้ label กี่ภาพถึงจะพอ สิบภาพต่อคลาสก็ได้ 60.8% แล้ว หนึ่งพันภาพได้ 90.2% และกราฟแบนไปตั้งแต่ก่อนถึงจุดนั้นนานแล้ว</span>
+        <span data-lang-en>Labels needed: 10/class reaches 60.8%, 1,000/class reaches 90.2%.</span>
+        <span data-lang-th>จำนวน label ที่ต้องใช้: 10 ภาพ/คลาสได้ 60.8%, 1,000 ภาพ/คลาสได้ 90.2%</span>
       </figcaption>
     </figure>
 
@@ -1039,8 +1039,8 @@
     <figure>
       <img src="assets/reactive_fsm.jpg" alt="The five-state reactive explorer state machine, with red transitions ending the mission" />
       <figcaption>
-        <span data-lang-en>Five states, and no reverse. If no heading is clear the rover declares a failsafe and stops rather than guessing, which is exactly what happened on the runs that ended without operator input.</span>
-        <span data-lang-th>ห้าสถานะ และไม่มีการถอยหลัง ถ้าไม่มีทิศไหนโล่งเลย โรเวอร์จะเข้า failsafe แล้วหยุด แทนที่จะเดาสุ่ม และนี่คือสิ่งที่เกิดขึ้นจริงในรอบทดสอบที่จบเองโดยไม่มีคนสั่ง</span>
+        <span data-lang-en>Five states, no reverse. An unclear heading triggers a failsafe stop, not a guess.</span>
+        <span data-lang-th>ห้าสถานะ ไม่มีถอยหลัง ทิศไม่ชัดเจนคือ failsafe หยุด ไม่ใช่การเดา</span>
       </figcaption>
     </figure>
 
@@ -1169,10 +1169,15 @@
 
     <div class="two-up">
       <figure>
-        <img src="assets/gazebo_world_oblique.jpg" alt="Oblique view of the four-quadrant Gazebo Mars terrain world, with the rock field in the far corner" />
+        <div class="teaser-grid" style="max-width: none;">
+          <img src="assets/gazebo_world_overhead.jpg" alt="Overhead view of the four labelled terrain quadrants: bedrock, rock, soil and sand" />
+          <img src="assets/gazebo_world_oblique.jpg" alt="Oblique view of the four-quadrant world, with the rock field in the far corner" />
+          <img src="assets/gazebo_rock_cluster.jpg" alt="Close-up rover's-eye view of the rock quadrant's boulder cluster" />
+          <img src="assets/gazebo_zone_boundary.jpg" alt="View across the sand/bedrock boundary toward the rock field" />
+        </div>
         <figcaption>
-          <span data-lang-en>The benchmark world: four 15×12 m terrain quadrants on a 30×24 m base, textured from real Mars camera imagery. The rock field sits in the far corner.</span>
-          <span data-lang-th>โลกที่ใช้เป็น benchmark มีพื้นผิวสี่ส่วน ส่วนละ 15×12 เมตร บนฐาน 30×24 เมตร ปูเท็กซ์เจอร์จากภาพกล้องบนดาวอังคารจริง สนามหินอยู่มุมไกล</span>
+          <span data-lang-en>The benchmark world: four 15×12 m terrain quadrants, textured from real Mars imagery.</span>
+          <span data-lang-th>โลก benchmark: พื้นผิวสี่ส่วน ขนาด 15×12 เมตร ปูเท็กซ์เจอร์จากภาพดาวอังคารจริง</span>
         </figcaption>
       </figure>
       <figure class="plot">
@@ -1187,8 +1192,8 @@
     <figure class="native">
       <img src="assets/gazebo_rock_view.jpg" alt="The rover camera's view at the rock position: boulders filling the near field over grey ground" />
       <figcaption>
-        <span data-lang-en>One camera frame, at the rock position. 640 by 480 pixels, no depth, no map, no second look. This is the entire input the model gets before it decides on a speed, and it is the position where confidence falls under the threshold and the rover stops.</span>
-        <span data-lang-th>ภาพจากกล้องหนึ่งเฟรม ที่ตำแหน่งกองหิน ขนาด 640 คูณ 480 พิกเซล ไม่มีความลึก ไม่มีแผนที่ ไม่มีการมองซ้ำ นี่คืออินพุตทั้งหมดที่โมเดลได้รับก่อนตัดสินใจเรื่องความเร็ว และเป็นตำแหน่งที่ค่าความมั่นใจตกลงต่ำกว่าเกณฑ์จนโรเวอร์หยุด</span>
+        <span data-lang-en>One camera frame at the rock position, the model's entire input. Confidence falls below threshold here, so the rover stops.</span>
+        <span data-lang-th>ภาพหนึ่งเฟรมที่ตำแหน่งกองหิน คืออินพุตทั้งหมดของโมเดล ความมั่นใจตกต่ำกว่าเกณฑ์ตรงนี้ โรเวอร์จึงหยุด</span>
       </figcaption>
     </figure>
 
@@ -1237,8 +1242,8 @@
     <figure>
       <img src="assets/sandpit_arena_single.jpg" alt="The laboratory sandpit, walled with printed Mars terrain panels, shown empty between test runs" />
       <figcaption>
-        <span data-lang-en>The test arena between runs, showing the printed Mars terrain panels around the walls. Laboratory objects were placed on the sand as LiDAR obstacles and moved between runs; the terrain being classified is always the printed imagery on the walls, never the objects.</span>
-        <span data-lang-th>สนามทดสอบระหว่างรอบ แสดงแผ่นพิมพ์ภาพพื้นผิวดาวอังคารรอบผนัง ระหว่างการทดสอบจะมีของในห้องแล็บวางบนทรายเป็นสิ่งกีดขวางให้ LiDAR เจอ แล้วย้ายที่ทุกรอบ พื้นผิวที่โมเดลจำแนกคือภาพที่พิมพ์อยู่บนแผ่นรอบผนังเสมอ ไม่ใช่ของที่วางอยู่</span>
+        <span data-lang-en>The test arena between runs. Terrain panels line the walls; objects on the sand are LiDAR obstacles, not terrain.</span>
+        <span data-lang-th>สนามทดสอบระหว่างรอบ แผ่นภาพพื้นผิวอยู่รอบผนัง ของบนทรายคือสิ่งกีดขวางให้ LiDAR ไม่ใช่พื้นผิว</span>
       </figcaption>
     </figure>
 
@@ -1319,8 +1324,8 @@
                 allowfullscreen loading="lazy"></iframe>
       </div>
       <figcaption>
-        <span data-lang-en>Thirty videos in four groups: eight autonomous hardware runs recorded on 4 August 2026, six onboard-camera views reconstructed from the rosbag recordings of those same sessions together with two longer extras, twelve recordings of the Gazebo benchmark world, and two recordings of a later mixed-obstacle sensor-validation sanity check (single run, not a quantitative result). Seven of the eight hardware runs are in the sandpit; the last is on a laboratory floor against everyday objects, a different visual and geometric problem. The rover was under autonomous control throughout, with no operator input.</span>
-        <span data-lang-th>วิดีโอ 30 คลิป แบ่งเป็นสี่กลุ่ม ได้แก่ โรเวอร์วิ่งเองแปดรอบ บันทึกไว้เมื่อ 4 สิงหาคม 2026 ภาพจากกล้องบนตัวโรเวอร์อีกหกคลิปที่กู้จาก rosbag ของรอบเดียวกัน พร้อมคลิปยาวพิเศษอีกสองคลิป คลิปจากโลกจำลอง Gazebo อีกสิบสองคลิป และคลิปตรวจสอบ sensor เพิ่มเติมภายหลังอีกสองคลิป (รันครั้งเดียว ไม่ใช่ผลเชิงปริมาณ) ในแปดรอบฮาร์ดแวร์นั้น เจ็ดรอบแรกอยู่ในบ่อทราย รอบสุดท้ายย้ายมาบนพื้นห้องแล็บกับข้าวของทั่วไป ซึ่งเป็นโจทย์คนละแบบทั้งเรื่องภาพและรูปทรง ทุกรอบโรเวอร์คุมตัวเองทั้งหมด ไม่มีคนสั่ง</span>
+        <span data-lang-en>30 videos in four groups: 8 autonomous hardware runs, 6 onboard-camera reconstructions plus 2 extras, 12 Gazebo benchmark recordings, and 2 mixed-obstacle sensor-validation clips (a single sanity check, not a quantitative result). All fully autonomous, no operator input.</span>
+        <span data-lang-th>วิดีโอ 30 คลิป สี่กลุ่ม: ฮาร์ดแวร์วิ่งเอง 8 คลิป, กล้องบนตัวโรเวอร์ 6 คลิป + พิเศษ 2 คลิป, Gazebo benchmark 12 คลิป, และ sensor-validation 2 คลิป (sanity check ครั้งเดียว ไม่ใช่ผลเชิงปริมาณ) ทุกคลิปโรเวอร์คุมตัวเองทั้งหมด ไม่มีคนสั่ง</span>
       </figcaption>
     </figure>
   </section>
@@ -1384,18 +1389,27 @@
         </svg>
       </div>
       <figcaption>
-        <span data-lang-en>Why the safety guarantee does not survive this class. Every one of the 36 readings cleared the threshold, so the rover would have driven through. This is a calibration failure, not a capacity failure.</span>
-        <span data-lang-th>เหตุผลที่การรับประกันความปลอดภัยไปไม่ถึงคลาสนี้ ค่าที่อ่านได้ทั้ง 36 ครั้งผ่านเกณฑ์ไปหมด แปลว่าโรเวอร์จะขับผ่านไป ปัญหาอยู่ที่การ calibrate ค่าความมั่นใจ ไม่ใช่ที่ความสามารถของโมเดล</span>
+        <span data-lang-en>All 36 readings cleared the threshold: a calibration failure, not a capacity one.</span>
+        <span data-lang-th>ค่าที่อ่านได้ทั้ง 36 ครั้งผ่านเกณฑ์หมด เป็นปัญหาการ calibrate ไม่ใช่ความสามารถของโมเดล</span>
       </figcaption>
     </figure>
 
-    <figure class="plot">
-      <img src="assets/real_camera_by_class.jpg" alt="Real camera accuracy by terrain class with Wilson confidence intervals" />
-      <figcaption>
-        <span data-lang-en>Accuracy on real camera photographs by class, with 95% confidence intervals. The dashed line is the same model's score on the Mars dataset.</span>
-        <span data-lang-th>ความแม่นยำบนภาพจากกล้องจริง แยกตามคลาส พร้อมช่วงความเชื่อมั่น 95% เส้นประคือคะแนนของโมเดลตัวเดียวกันบนชุดข้อมูลดาวอังคาร</span>
-      </figcaption>
-    </figure>
+    <div class="two-up">
+      <figure class="plot">
+        <img src="assets/real_camera_by_class.jpg" alt="Real camera accuracy by terrain class with Wilson confidence intervals" />
+        <figcaption>
+          <span data-lang-en>Accuracy on real camera photographs by class, with 95% confidence intervals. The dashed line is the same model's score on the Mars dataset.</span>
+          <span data-lang-th>ความแม่นยำบนภาพจากกล้องจริง แยกตามคลาส พร้อมช่วงความเชื่อมั่น 95% เส้นประคือคะแนนของโมเดลตัวเดียวกันบนชุดข้อมูลดาวอังคาร</span>
+        </figcaption>
+      </figure>
+      <figure class="plot">
+        <img src="assets/big_rock_training_count.jpg" alt="Usable training images per class: soil, bedrock and sand at 1,000 each, big rock at 108" />
+        <figcaption>
+          <span data-lang-en>Why: big rock had 108 usable training images against 1,000 for every other class.</span>
+          <span data-lang-th>สาเหตุ: หินก้อนใหญ่มีภาพเทรนใช้ได้แค่ 108 ภาพ เทียบกับ 1,000 ภาพของคลาสอื่น</span>
+        </figcaption>
+      </figure>
+    </div>
 
     <div class="prose">
       <p>
