@@ -286,14 +286,6 @@
   h3 { font-size: var(--step-1); font-weight: 600; margin-top: 2rem; }
   p { margin: 0 0 1.1rem; }
 
-  .lede {
-    font-size: var(--step-1);
-    color: var(--muted);
-    line-height: 1.6;
-    max-width: 44rem;
-    margin-inline: auto;
-  }
-
   a { color: var(--accent); text-underline-offset: .18em; }
   strong { font-weight: 650; }
   .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
@@ -650,8 +642,8 @@
     <p class="affil">MSc Thesis &middot; Cranfield University &middot; 2026</p>
     <h1>Onboard Visual Foundation Models for Mars Terrain Perception and Rover Navigation</h1>
     <h2 class="subtitle">
-      <span data-lang-en>A pretrained model decides where this rover may drive</span>
-      <span data-lang-th>ให้โมเดลที่ผ่านการฝึกมาแล้ว เป็นตัวตัดสินว่าโรเวอร์ขับตรงไหนได้บ้าง</span>
+      <span data-lang-en>A frozen foundation model, never shown Mars, decides where this rover is safe to drive.</span>
+      <span data-lang-th>โมเดลที่ล็อกน้ำหนักไว้ทั้งตัว ไม่เคยเห็นภาพดาวอังคารมาก่อน เป็นตัวตัดสินว่าโรเวอร์ขับตรงไหนได้อย่างปลอดภัย</span>
     </h2>
     <p class="byline">Thupthai Chaiyadecha</p>
 
@@ -662,11 +654,6 @@
       <a class="res" href="https://github.com/thupthaiNK/Foundational-Model-for-Rover-Autonomy" target="_blank" rel="noopener"><b><span data-lang-en>Code</span><span data-lang-th>โค้ด</span></b></a>
       <a class="res" href="https://www.youtube.com/playlist?list=PLWlI8ZIzh2Es" target="_blank" rel="noopener"><b><span data-lang-en>Video</span><span data-lang-th>วิดีโอ</span></b></a>
     </div>
-
-    <p class="lede">
-      <span data-lang-en>A vision foundation model that has never seen Mars is frozen, mounted on a low-cost six-wheel rover, and asked to judge terrain it was never trained on. It works for two terrain classes out of three, and the way it fails on the third is the most useful result here.</span>
-      <span data-lang-th>งานนี้เอา vision foundation model ที่ไม่เคยเห็นภาพดาวอังคารมาก่อนเลย มาล็อกน้ำหนักไว้ทั้งตัว ติดบนโรเวอร์หกล้อราคาถูก แล้วให้มันตัดสินพื้นผิวที่ไม่เคยมีใครสอนมัน ผลคือใช้ได้จริงกับพื้นสองชนิดจากสามชนิด ส่วนลักษณะที่มันพลาดกับชนิดที่สาม เป็นผลที่มีประโยชน์ที่สุดของงานนี้</span>
-    </p>
 
     <figure class="teaser">
       <div class="teaser-grid">
@@ -955,7 +942,7 @@
       <div>
         <p>
           <span data-lang-en>Most of the software design is a response to that last table row rather than to anything in the rows above it. With no wheel encoders there is no odometry from the drivetrain at all, so a turn cannot be commanded as a number of seconds and trusted: it has to be closed against the heading the IMU actually measures, because on loose ground a wheel always slips and a timed turn always ends somewhere else. With no rear-facing sensor, reversing is done blind, which is why the stack has no reverse. With no GPU, every millisecond of inference is CPU time competing with everything else on board, which is what sets the ceiling on how large an encoder can be.</span>
-          <span data-lang-th>การออกแบบซอฟต์แวร์ส่วนใหญ่เป็นการตอบสนองต่อแถวสุดท้ายของตาราง มากกว่าแถวไหนที่อยู่ข้างบน เมื่อไม่มีเอ็นโคเดอร์วัดรอบล้อ ก็ไม่มีค่า odometry จากระบบขับเคลื่อนเลย การสั่งหมุนเป็นจำนวนวินาทีแล้วเชื่อผลจึงทำไม่ได้ ต้องปิดลูปด้วยค่าทิศทางที่ IMU วัดได้จริง เพราะบนพื้นหลวมล้อลื่นเสมอ และการหมุนตามเวลาก็ไปจบผิดที่เสมอ เมื่อไม่มีเซนเซอร์หันไปด้านหลัง การถอยหลังก็คือถอยแบบตาบอด ระบบนี้จึงไม่มีเกียร์ถอยหลัง และเมื่อไม่มี GPU ทุกมิลลิวินาทีของการ inference คือเวลา CPU ที่ต้องแย่งกับงานอื่นบนรถ ซึ่งเป็นตัวกำหนดเพดานว่า encoder จะใหญ่ได้แค่ไหน</span>
+          <span data-lang-th>การออกแบบซอฟต์แวร์ส่วนใหญ่เป็นการตอบสนองต่อแถวสุดท้ายของตาราง มากกว่าแถวอื่น ๆ ข้างบนเสียอีก เมื่อไม่มีเอ็นโคเดอร์วัดรอบล้อ ก็ไม่มีค่า odometry จากระบบขับเคลื่อนเลย การสั่งหมุนเป็นจำนวนวินาทีแล้วเชื่อผลจึงทำไม่ได้ ต้องปิดลูปด้วยค่าทิศทางที่ IMU วัดได้จริง เพราะบนพื้นหลวมล้อลื่นเสมอ และการหมุนตามเวลาก็ไปจบผิดที่เสมอ เมื่อไม่มีเซนเซอร์หันไปด้านหลัง การถอยหลังก็คือถอยแบบตาบอด ระบบนี้จึงไม่มีเกียร์ถอยหลัง และเมื่อไม่มี GPU ทุกมิลลิวินาทีของการ inference คือเวลา CPU ที่ต้องแย่งกับงานอื่นบนรถ ซึ่งเป็นตัวกำหนดเพดานว่า encoder จะใหญ่ได้แค่ไหน</span>
         </p>
         <p>
           <span data-lang-en>The stack was ported from the platform's original ROS1 release to ROS2 Humble and runs entirely on the Pi. Thirteen processes share four cores while the rover drives. Nothing is offloaded to a laptop, and nothing waits on a network link, which is the condition the whole thesis is trying to satisfy: if the rover needed either, the delay it was built to work around would be back.</span>
