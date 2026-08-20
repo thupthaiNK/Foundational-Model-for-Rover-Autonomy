@@ -403,7 +403,16 @@
   .stat-k { font-size: var(--step--1); color: var(--muted); display: block; margin-top: .3rem; }
 
   /* --------------------------------------------------------- collapsed blocks */
-  .abstract { max-width: 46rem; margin: 2.4rem auto 0; text-align: left; }
+  /* The lede paragraph sits before the <details> now, always visible, so a
+     reader gets one paragraph of real content before deciding whether to
+     open the rest -- previously the whole abstract was collapsed and a
+     skimmer saw nothing at all. Same width/colour/justify as the abstract
+     p's below it, so the two don't look like different components. */
+  .abstract-lede { max-width: 46rem; margin: 2.4rem auto 0; text-align: left; }
+  .abstract-lede p { color: var(--muted); text-align: justify; }
+  :root[lang="th"] .abstract-lede p { text-align: left; }
+
+  .abstract { max-width: 46rem; margin: 1.4rem auto 0; text-align: left; }
 
   .abstract > summary,
   .more > summary {
@@ -691,19 +700,22 @@
       </div>
     </div>
 
-    <details class="abstract">
-      <summary><span data-lang-en>Abstract</span><span data-lang-th>บทคัดย่อ</span></summary>
+    <div class="abstract-lede">
       <p>
-        <span data-lang-en>A Mars rover cannot be driven by hand. The one-way communication delay to Earth runs from 3 to 22 minutes, so a rover must judge unfamiliar ground on its own. Building a dedicated terrain classifier for each mission is slow and expensive. Pretrained foundation models offer a faster route, if their general visual knowledge transfers to Mars imagery with no Mars-specific training.</span>
-        <span data-lang-th>โรเวอร์บนดาวอังคารบังคับด้วยมือไม่ได้ สัญญาณเดินทางเที่ยวเดียวระหว่างโลกกับดาวอังคารใช้เวลา 3 ถึง 22 นาที โรเวอร์จึงต้องตัดสินพื้นที่ที่ไม่คุ้นเคยเอง การทำตัวจำแนกพื้นผิวขึ้นใหม่ให้แต่ละภารกิจก็ทั้งช้าและแพง foundation model ที่ผ่านการ pretrain มาแล้วเป็นทางที่เร็วกว่า ถ้าความรู้เรื่องภาพแบบทั่วไปของมันย้ายมาใช้กับภาพดาวอังคารได้ โดยไม่ต้องเทรนด้วยข้อมูลดาวอังคารเลย</span>
+        <span data-lang-en>A Mars rover cannot be driven by hand: the one-way delay to Earth is 3–22 minutes, so it must judge unfamiliar ground on its own. Building a dedicated classifier per mission is slow and expensive. Pretrained foundation models offer a faster route, if their visual knowledge transfers to Mars imagery with no Mars-specific training.</span>
+        <span data-lang-th>โรเวอร์บนดาวอังคารบังคับด้วยมือไม่ได้ สัญญาณเดินทางเที่ยวเดียวใช้เวลา 3 ถึง 22 นาที โรเวอร์จึงต้องตัดสินพื้นที่ที่ไม่คุ้นเคยเอง การทำตัวจำแนกพื้นผิวขึ้นใหม่ให้แต่ละภารกิจก็ทั้งช้าและแพง foundation model ที่ผ่านการ pretrain มาแล้วเป็นทางที่เร็วกว่า ถ้าความรู้เรื่องภาพของมันย้ายมาใช้กับภาพดาวอังคารได้ โดยไม่ต้องเทรนด้วยข้อมูลดาวอังคารเลย</span>
       </p>
+    </div>
+
+    <details class="abstract">
+      <summary><span data-lang-en>Rest of the abstract</span><span data-lang-th>บทคัดย่อ ส่วนที่เหลือ</span></summary>
       <p>
         <span data-lang-en>This thesis tests whether that transfer is good enough for a low-cost rover, and which pretraining approach transfers best when the network itself is never retrained. Ten experiment groups evaluate 22 model variants across eight pretraining paradigms on AI4Mars, then deploy the strongest small model on a Raspberry Pi 4, in Gazebo, and on a real ExoMy rover.</span>
         <span data-lang-th>วิทยานิพนธ์นี้ตรวจว่าความรู้ที่ย้ายมานั้นดีพอสำหรับโรเวอร์ราคาประหยัดหรือไม่ และการ pretrain แบบไหนย้ายมาได้ดีที่สุด เมื่อไม่เทรนตัวเครือข่ายซ้ำเลย การทดลองสิบกลุ่มวัดโมเดล 22 แบบ จากแปดแนวทางการ pretrain บนชุดข้อมูล AI4Mars จากนั้นนำโมเดลเล็กที่ได้ผลดีที่สุดไปติดตั้งจริงบน Raspberry Pi 4 ทดสอบทั้งใน Gazebo และบนโรเวอร์ ExoMy ตัวจริง</span>
       </p>
       <p>
-        <span data-lang-en>CLIP reaches 34.8% zero-shot accuracy with no labelled Mars data. DINO self-supervised pretraining is the most effective of the eight, reaching 89.9–94.43% against 89.55% for the best competitor. A two-model DINOv2 ensemble reaches 94.43%, within 2.24 points of the 96.67% supervised baseline. The deployed model reaches 90.24%, runs at 570 ms per image, and never passes an unsafe call through in Gazebo despite only 60% terrain accuracy, because a calibrated threshold turns uncertainty into a safe stop. On real camera imagery, soil and sand transfer but big rock fails every time, and the safety guarantee does not survive that one class.</span>
-        <span data-lang-th>CLIP ทำได้ 34.8% แบบ zero-shot โดยไม่ใช้ข้อมูลดาวอังคารเลย การ pretrain แบบ DINO ได้ผลดีที่สุดในแปดแนวทาง ทำได้ 89.9–94.43% เทียบกับ 89.55% ของแนวทางคู่แข่งที่ดีที่สุด DINOv2 สองตัวทำ ensemble ได้ 94.43% ห่างจาก baseline แบบ supervised ที่ 96.67% อยู่ 2.24 จุด โมเดลที่ติดตั้งจริงทำได้ 90.24% ใช้เวลา 570 มิลลิวินาทีต่อภาพ และใน Gazebo ไม่เคยปล่อยการจำแนกผิดที่อันตรายหลุดออกไปเลย ทั้งที่ความแม่นยำพื้นผิวแค่ 60% เพราะเกณฑ์ความมั่นใจที่ calibrate แล้วเปลี่ยนความไม่แน่ใจเป็นการหยุด บนภาพกล้องจริง ดินและทรายยังใช้ได้ แต่หินก้อนใหญ่พลาดทุกครั้ง และการรับประกันความปลอดภัยไปไม่รอดกับคลาสนี้</span>
+        <span data-lang-en>CLIP reaches 34.8% zero-shot with no labelled Mars data. DINO pretraining is the most effective of the eight, at 89.9–94.43% against 89.55% for the best competitor. A two-model DINOv2 ensemble reaches 94.43%, 2.24 points below the 96.67% supervised baseline. The deployed model reaches 90.24% at 570 ms/image, and never lets an unsafe call through in Gazebo despite only 60% terrain accuracy, thanks to a calibrated confidence threshold. On real cameras, soil and sand transfer but big rock fails every time.</span>
+        <span data-lang-th>CLIP ทำได้ 34.8% แบบ zero-shot โดยไม่ใช้ข้อมูลดาวอังคารเลย DINO ได้ผลดีที่สุดในแปดแนวทาง ทำได้ 89.9–94.43% เทียบกับ 89.55% ของแนวทางคู่แข่งที่ดีที่สุด DINOv2 สองตัวทำ ensemble ได้ 94.43% ต่ำกว่า baseline แบบ supervised ที่ 96.67% อยู่ 2.24 จุด โมเดลที่ติดตั้งจริงทำได้ 90.24% ที่ 570 มิลลิวินาที/ภาพ และไม่เคยปล่อยการจำแนกผิดที่อันตรายหลุดออกไปใน Gazebo ทั้งที่ความแม่นยำพื้นผิวแค่ 60% เพราะเกณฑ์ความมั่นใจที่ calibrate แล้ว บนกล้องจริง ดินและทรายยังใช้ได้ แต่หินก้อนใหญ่พลาดทุกครั้ง</span>
       </p>
       <p>
         <span data-lang-en>An extended reactive-safety stack, verified in Gazebo and on hardware, adds hazard recovery, sensor fusion, path planning, and an unattended explore-and-return mission.</span>
@@ -718,8 +730,8 @@
       <p class="eyebrow"><span data-lang-en>The problem</span><span data-lang-th>โจทย์</span></p>
       <h2><span data-lang-en>Nobody on Earth can steer a rover in real time</span><span data-lang-th>ไม่มีใครบนโลกบังคับโรเวอร์แบบเรียลไทม์ได้</span></h2>
       <p>
-        <span data-lang-en>A radio signal takes between 3 and 22 minutes to travel one way between Earth and Mars, depending on where the two planets are in their orbits. By the time an operator sees a hazard, the rover has already driven past it, and by the time the command to stop arrives, the wheels are somewhere else entirely. A rover has to judge unfamiliar ground by itself.</span>
-        <span data-lang-th>สัญญาณวิทยุเดินทางเที่ยวเดียวระหว่างโลกกับดาวอังคารใช้เวลา 3 ถึง 22 นาที ขึ้นกับว่าตอนนั้นสองดาวอยู่ตรงไหนของวงโคจร กว่าผู้ควบคุมจะเห็นว่ามีอันตราย โรเวอร์ก็ขับผ่านจุดนั้นไปแล้ว และกว่าคำสั่งหยุดจะไปถึง ล้อก็ไปอยู่อีกที่หนึ่ง โรเวอร์จึงต้องตัดสินพื้นที่ที่ไม่คุ้นเคยเอง</span>
+        <span data-lang-en>A radio signal takes 3–22 minutes one way between Earth and Mars. By the time an operator sees a hazard, the rover has already driven past it. A rover has to judge unfamiliar ground by itself.</span>
+        <span data-lang-th>สัญญาณวิทยุเดินทางเที่ยวเดียวใช้เวลา 3 ถึง 22 นาที กว่าผู้ควบคุมจะเห็นว่ามีอันตราย โรเวอร์ก็ขับผ่านจุดนั้นไปแล้ว โรเวอร์จึงต้องตัดสินพื้นที่ที่ไม่คุ้นเคยเอง</span>
       </p>
     </div>
 
@@ -963,8 +975,8 @@
       <p class="eyebrow"><span data-lang-en>How it drives</span><span data-lang-th>มันขับอย่างไร</span></p>
       <h2><span data-lang-en>The model names the ground. Everything else can only say no.</span><span data-lang-th>โมเดลเป็นตัวบอกว่าพื้นข้างหน้าคืออะไร ที่เหลือทำได้แค่ห้าม</span></h2>
       <p>
-        <span data-lang-en>This is the design decision the whole system rests on. The camera and the foundation model form the only path that proposes where the rover may go. The LiDAR and the IMU are vetoes: they can refuse a heading, but neither one proposes a terrain class and, since July 2026, neither can command a manoeuvre of its own. Remove the foundation model and the rover is reduced to bumping around obstacles with no idea what it is standing on.</span>
-        <span data-lang-th>นี่คือการตัดสินใจเชิงออกแบบที่ทั้งระบบตั้งอยู่บนมัน กล้องกับ foundation model เป็นเส้นทางเดียวที่เสนอได้ว่าโรเวอร์ควรไปทางไหน ส่วน LiDAR กับ IMU มีสิทธิ์แค่ veto คือห้ามทิศทางได้ แต่ไม่มีตัวไหนบอกชนิดพื้นผิว และตั้งแต่กรกฎาคม 2026 ก็ไม่มีตัวไหนสั่งให้รถขยับเองได้อีก ถ้าถอด foundation model ออก โรเวอร์จะเหลือแค่คลำหลบสิ่งกีดขวางไปเรื่อย ๆ โดยไม่รู้เลยว่าตัวเองอยู่บนพื้นแบบไหน</span>
+        <span data-lang-en>The camera and the foundation model are the only path that proposes where the rover may go. LiDAR and IMU only veto: they can refuse a heading, but never propose a terrain class or command a manoeuvre. Remove the foundation model, and the rover is just bumping around obstacles with no idea what it is standing on.</span>
+        <span data-lang-th>กล้องกับ foundation model เป็นเส้นทางเดียวที่เสนอได้ว่าโรเวอร์ควรไปทางไหน ส่วน LiDAR กับ IMU มีสิทธิ์แค่ veto ห้ามทิศทางได้ แต่ไม่บอกชนิดพื้นผิวหรือสั่งให้รถขยับเอง ถ้าถอด foundation model ออก โรเวอร์จะเหลือแค่คลำหลบสิ่งกีดขวางไปเรื่อย ๆ โดยไม่รู้ว่าตัวเองอยู่บนพื้นแบบไหน</span>
       </p>
     </div>
 
@@ -1031,8 +1043,8 @@
 
       <h3><span data-lang-en>What happens when the ground ahead is refused</span><span data-lang-th>ถ้าพื้นข้างหน้าถูกปฏิเสธ แล้วยังไงต่อ</span></h3>
       <p>
-        <span data-lang-en>A stop on its own is a dead end, so a small state machine takes over. It waits out a three-second dwell to be sure the hazard is real, then turns and re-checks rather than reversing. Every turn closes the loop against measured heading rather than running for a fixed time, because wheels slip on loose ground and a timed turn would drift off target. A heading is accepted only after two consecutive clear readings, while a single blocked reading rejects it: stop immediately, resume gradually.</span>
-        <span data-lang-th>หยุดเฉย ๆ ก็คือทางตัน จึงมี state machine เล็ก ๆ เข้ามารับช่วงต่อ มันจะรอสามวินาทีให้แน่ใจก่อนว่าอันตรายนั้นมีจริง แล้วหมุนตัวไปตรวจทิศใหม่ ไม่ใช่ถอยหลัง ทุกครั้งที่หมุน ระบบปิดลูปด้วยค่าทิศทางที่วัดได้จริง ไม่ได้หมุนตามเวลาที่ตั้งไว้ เพราะล้อลื่นบนพื้นหลวม หมุนตามเวลาแล้วจะเพี้ยนออกจากเป้า ทิศไหนจะผ่านได้ต้องอ่านว่าโล่งติดกันสองครั้ง แต่ถ้าอ่านว่าถูกปิดกั้นแค่ครั้งเดียวก็ตัดทิ้งทันที คือหยุดให้เร็ว แล้วค่อย ๆ กลับมาเดิน</span>
+        <span data-lang-en>A stop alone is a dead end, so a small state machine takes over: wait 3 seconds, turn, re-check — no reversing. Every turn closes against measured heading, not a fixed time, since wheels slip on loose ground. A heading needs two clear readings to accept; one blocked reading rejects it immediately.</span>
+        <span data-lang-th>หยุดเฉย ๆ คือทางตัน จึงมี state machine เล็ก ๆ รับช่วงต่อ รอ 3 วินาที หมุนตรวจทิศใหม่ ไม่ถอยหลัง ทุกครั้งที่หมุนปิดลูปด้วยทิศทางที่วัดได้จริง ไม่ใช่ตามเวลา เพราะล้อลื่นบนพื้นหลวม ทิศจะผ่านได้ต้องอ่านโล่งสองครั้งติด แต่ถ้าปิดกั้นแค่ครั้งเดียวก็ตัดทิ้งทันที</span>
       </p>
     </div>
 
@@ -1162,45 +1174,36 @@
         <span data-lang-th>งานนี้สร้างโลกจำลองใน Gazebo ขึ้นมาเอง แบ่งพื้นเป็นสี่ส่วน ปูเท็กซ์เจอร์ด้วยภาพจริงจากดาวอังคาร แล้วเอาโรเวอร์ไปวางทีละจุดจนครบห้าจุด ให้มันจำแนกสิ่งที่เห็นแล้วเลือกความเร็วเอง ผลคือทายพื้นผิวถูก 3 ใน 5 จุด คิดเป็น 60%</span>
       </p>
       <p>
-        <span data-lang-en>But it makes the safe choice at all five, which is the number the design was built for. At both rock positions the model's confidence drops below the threshold, so the rover stops regardless of which label it guessed, and at the two positions it misread, the conservative speed it picked was still slow enough to be safe. An unnecessary stop always beats entering hazardous terrain.</span>
-        <span data-lang-th>แต่มันเลือกทางที่ปลอดภัยครบทั้งห้าจุด และนี่คือตัวเลขที่การออกแบบนี้ต้องการ ที่จุดหินทั้งสองจุด ความมั่นใจของโมเดลตกลงต่ำกว่าเกณฑ์ โรเวอร์เลยหยุด ไม่ว่ามันจะเดาคลาสเป็นอะไรก็ตาม ส่วนสองจุดที่อ่านผิด ความเร็วที่มันเลือกก็ยังช้าพอที่จะปลอดภัยอยู่ดี หยุดเกินความจำเป็นยังไงก็ดีกว่าขับเข้าพื้นที่อันตราย</span>
+        <span data-lang-en>It makes the safe choice at all five positions, the number the design was built for. At both rock positions confidence drops below threshold, so the rover stops regardless of the guess; at the two misread positions, the conservative speed was still safe. An unnecessary stop always beats entering hazardous terrain.</span>
+        <span data-lang-th>มันเลือกทางที่ปลอดภัยครบทั้งห้าจุด ที่จุดหินทั้งสอง ความมั่นใจตกต่ำกว่าเกณฑ์ โรเวอร์จึงหยุดไม่ว่าจะเดาคลาสเป็นอะไร ส่วนสองจุดที่อ่านผิด ความเร็วที่เลือกก็ยังปลอดภัยอยู่ดี หยุดเกินจำเป็นยังไงก็ดีกว่าขับเข้าพื้นที่อันตราย</span>
       </p>
     </div>
 
-    <div class="two-up">
-      <figure>
-        <div class="teaser-grid" style="max-width: none;">
-          <img src="assets/gazebo_world_overhead.jpg" alt="Overhead view of the four labelled terrain quadrants: bedrock, rock, soil and sand" />
-          <img src="assets/gazebo_world_oblique.jpg" alt="Oblique view of the four-quadrant world, with the rock field in the far corner" />
-          <img src="assets/gazebo_rock_cluster.jpg" alt="Close-up rover's-eye view of the rock quadrant's boulder cluster" />
-          <img src="assets/gazebo_zone_boundary.jpg" alt="View across the sand/bedrock boundary toward the rock field" />
-        </div>
-        <figcaption>
-          <span data-lang-en>The benchmark world: four 15×12 m terrain quadrants, textured from real Mars imagery.</span>
-          <span data-lang-th>โลก benchmark: พื้นผิวสี่ส่วน ขนาด 15×12 เมตร ปูเท็กซ์เจอร์จากภาพดาวอังคารจริง</span>
-        </figcaption>
-      </figure>
-      <figure class="plot">
-        <img src="assets/gazebo_zone_results.jpg" alt="Per-zone classification and safety outcome across the five benchmark positions" />
-        <figcaption>
-          <span data-lang-en>Per position: what was classified, and whether the resulting speed was safe.</span>
-          <span data-lang-th>ดูทีละตำแหน่ง ว่าโมเดลจำแนกออกมาเป็นอะไร และความเร็วที่ได้นั้นปลอดภัยหรือไม่</span>
-        </figcaption>
-      </figure>
-    </div>
-
-    <figure class="native">
-      <img src="assets/gazebo_rock_view.jpg" alt="The rover camera's view at the rock position: boulders filling the near field over grey ground" />
+    <figure>
+      <div class="teaser-grid" style="max-width: none;">
+        <img src="assets/gazebo_world_overhead.jpg" alt="Overhead view of the four labelled terrain quadrants: bedrock, rock, soil and sand" />
+        <img src="assets/gazebo_world_oblique.jpg" alt="Oblique view of the four-quadrant world, with the rock field in the far corner" />
+        <img src="assets/gazebo_rock_cluster.jpg" alt="Close-up rover's-eye view of the rock quadrant's boulder cluster" />
+        <img src="assets/gazebo_zone_boundary.jpg" alt="View across the sand/bedrock boundary toward the rock field" />
+      </div>
       <figcaption>
-        <span data-lang-en>One camera frame at the rock position, the model's entire input. Confidence falls below threshold here, so the rover stops.</span>
-        <span data-lang-th>ภาพหนึ่งเฟรมที่ตำแหน่งกองหิน คืออินพุตทั้งหมดของโมเดล ความมั่นใจตกต่ำกว่าเกณฑ์ตรงนี้ โรเวอร์จึงหยุด</span>
+        <span data-lang-en>The benchmark world: four 15×12 m terrain quadrants, textured from real Mars imagery.</span>
+        <span data-lang-th>โลก benchmark: พื้นผิวสี่ส่วน ขนาด 15×12 เมตร ปูเท็กซ์เจอร์จากภาพดาวอังคารจริง</span>
+      </figcaption>
+    </figure>
+
+    <figure class="plot">
+      <img src="assets/gazebo_zone_results.jpg" alt="Per-zone classification and safety outcome across the five benchmark positions" />
+      <figcaption>
+        <span data-lang-en>Per position: what was classified, and whether the resulting speed was safe.</span>
+        <span data-lang-th>ดูทีละตำแหน่ง ว่าโมเดลจำแนกออกมาเป็นอะไร และความเร็วที่ได้นั้นปลอดภัยหรือไม่</span>
       </figcaption>
     </figure>
 
     <div class="prose">
       <p>
-        <span data-lang-en>The same simulation carried a much larger body of work: hazard recovery, detecting wheels spinning in sand without moving, fusing LiDAR range and IMU tilt into a single risk score, a lightweight path planner that reached a goal across hazardous ground, autonomous waypoint sequencing, area coverage, and a complete unattended mission that explored a box and drove itself home. Each was built test-first and verified live.</span>
-        <span data-lang-th>ซิมูเลชันชุดเดียวกันนี้ยังใช้ทำงานอีกหลายอย่าง ทั้งการกู้ตัวเองจากสถานการณ์อันตราย การจับได้ว่าล้อหมุนฟรีอยู่ในทรายแต่ตัวรถไม่ขยับ การรวมระยะจาก LiDAR กับความเอียงจาก IMU ให้เหลือคะแนนความเสี่ยงตัวเดียว ตัววางแผนเส้นทางแบบเบาที่พาไปถึงเป้าหมายผ่านพื้นที่อันตรายได้ การไล่ waypoint เองอัตโนมัติ การกวาดพื้นที่ให้ทั่ว และภารกิจเต็มรูปแบบที่ไม่มีคนคุม คือออกไปสำรวจกรอบพื้นที่แล้วขับกลับฐานเอง ทุกอย่างเขียนเทสต์ก่อนแล้วค่อยเขียนโค้ด และตรวจสอบด้วยการรันจริง</span>
+        <span data-lang-en>The same simulation carried more: hazard recovery, stuck-wheel detection, LiDAR+IMU risk fusion, a lightweight path planner, autonomous waypoint sequencing, area coverage, and a full unattended explore-and-return mission. Each was built test-first and verified live.</span>
+        <span data-lang-th>ซิมูเลชันชุดเดียวกันยังใช้ทำงานอีกหลายอย่าง ทั้งกู้ตัวเองจากอันตราย จับล้อหมุนฟรีในทราย รวมความเสี่ยงจาก LiDAR+IMU วางแผนเส้นทางแบบเบา ไล่ waypoint เอง กวาดพื้นที่ และภารกิจสำรวจแล้วกลับฐานเองแบบไม่มีคนคุม ทุกอย่างเขียนเทสต์ก่อนแล้วตรวจสอบด้วยการรันจริง</span>
       </p>
     </div>
 
@@ -1249,8 +1252,8 @@
 
     <div class="prose">
       <p>
-        <span data-lang-en>Twelve fully autonomous runs were recorded with the Mars backdrop installed, plus seven more on sand with full sensor logging. Every single run ended through a designed failsafe. Not one failed to stop itself safely. During those runs the terrain model demonstrably changed the rover's chosen heading against what the geometry alone would have picked, and on one occasion refused ground that the LiDAR had called open.</span>
-        <span data-lang-th>เก็บบันทึกการวิ่งอัตโนมัติเต็มรูปแบบไว้ 12 รอบ โดยติดตั้งฉากหลังดาวอังคารไว้ด้วย และอีก 7 รอบบนทรายพร้อม log ข้อมูลเซนเซอร์ครบ ทุกรอบจบลงด้วยกลไก failsafe ที่ออกแบบไว้ ไม่มีรอบไหนเลยที่หยุดตัวเองอย่างปลอดภัยไม่ได้ ระหว่างนั้นมีหลักฐานชัดว่าโมเดลพื้นผิวทำให้โรเวอร์เลือกทิศต่างไปจากที่ดูรูปทรงอย่างเดียวแล้วจะเลือก และมีอยู่ครั้งหนึ่งที่มันปฏิเสธพื้นที่ซึ่ง LiDAR บอกว่าโล่ง</span>
+        <span data-lang-en>Twelve autonomous runs with the Mars backdrop, plus seven more on sand with full sensor logging. Every run ended through a designed failsafe — none failed to stop itself safely. The terrain model demonstrably changed the rover's chosen heading versus geometry alone, once refusing ground the LiDAR had called open.</span>
+        <span data-lang-th>วิ่งอัตโนมัติ 12 รอบพร้อมฉากหลังดาวอังคาร และอีก 7 รอบบนทรายพร้อม log เซนเซอร์ครบ ทุกรอบจบด้วย failsafe ที่ออกแบบไว้ ไม่มีรอบไหนหยุดตัวเองอย่างปลอดภัยไม่ได้ โมเดลพื้นผิวทำให้โรเวอร์เลือกทิศต่างจากที่ดูรูปทรงอย่างเดียว และมีครั้งหนึ่งที่ปฏิเสธพื้นที่ซึ่ง LiDAR บอกว่าโล่ง</span>
       </p>
     </div>
 
@@ -1290,8 +1293,8 @@
 
     <div class="prose">
       <p>
-        <span data-lang-en>The second row of that table is worth reading twice. A model benchmarked alone looks three to four times faster than the same model running inside a real robot, because on real hardware it has to share the processor with the camera driver, the LiDAR, the state machine, and the logger. Benchmark numbers measured in isolation quietly overstate what a deployed system does.</span>
-        <span data-lang-th>แถวที่สองของตารางควรอ่านซ้ำอีกรอบ โมเดลที่วัดตอนรันเดี่ยว ๆ จะดูเร็วกว่าโมเดลตัวเดียวกันที่รันอยู่ในหุ่นยนต์จริงถึงสามถึงสี่เท่า เพราะบนฮาร์ดแวร์จริงมันต้องแบ่งหน่วยประมวลผลกับไดรเวอร์กล้อง LiDAR state machine และตัวเก็บ log ตัวเลข benchmark ที่วัดแบบแยกตัวออกมา จึงพูดเกินความจริงเงียบ ๆ ว่าระบบที่ติดตั้งใช้งานจริงทำได้แค่ไหน</span>
+        <span data-lang-en>Worth reading twice: a model benchmarked alone looks 3–4× faster than the same model inside a real robot, because on hardware it shares the processor with the camera driver, LiDAR, state machine, and logger. Isolated benchmark numbers overstate what a deployed system does.</span>
+        <span data-lang-th>ควรอ่านซ้ำ: โมเดลที่วัดตอนรันเดี่ยว ๆ จะดูเร็วกว่าโมเดลตัวเดียวกันในหุ่นยนต์จริงถึง 3–4 เท่า เพราะบนฮาร์ดแวร์จริงต้องแบ่งหน่วยประมวลผลกับไดรเวอร์กล้อง LiDAR state machine และตัวเก็บ log ตัวเลข benchmark ที่วัดแยกตัว จึงพูดเกินความจริงว่าระบบจริงทำได้แค่ไหน</span>
       </p>
     </div>
 
@@ -1340,8 +1343,8 @@
         <span data-lang-th>พอทดสอบกับภาพถ่ายจากกล้องของโรเวอร์เอง ผลแยกกันชัดตามชนิดพื้นผิว ดินจริงจำแนกถูกหมด 13 จาก 13 ทรายจริงแย่ลงแต่ยังพอไหว 17 จาก 23 ส่วนหินก้อนใหญ่ผิดหมดทั้ง 36 ภาพ</span>
       </p>
       <p>
-        <span data-lang-en>Part of that last number is definitional and needs saying plainly. The dataset provides only 108 labelled big-rock images against roughly a thousand for every other class, too few to fit a reliable layer on, so big rock was left out of the label set. The deployed classifier has three outputs and literally cannot answer "big rock". No encoder, however large, would change that.</span>
-        <span data-lang-th>ตัวเลขสุดท้ายนั้นส่วนหนึ่งเป็นเรื่องนิยาม และต้องพูดกันตรง ๆ ชุดข้อมูลมีภาพหินก้อนใหญ่ที่มี label อยู่แค่ 108 ภาพ เทียบกับคลาสอื่นที่มีราวหนึ่งพันภาพ น้อยเกินกว่าจะเทรนชั้นบนให้เชื่อถือได้ หินก้อนใหญ่จึงถูกตัดออกจากชุด label ตัวจำแนกที่ติดตั้งจริงมีเอาต์พุตสามทาง จึงตอบคำว่า "หินก้อนใหญ่" ไม่ได้อยู่แล้ว ต่อให้เปลี่ยนไปใช้ encoder ใหญ่แค่ไหนก็ไม่เปลี่ยน</span>
+        <span data-lang-en>The dataset provides only 108 labelled big-rock images against roughly 1,000 for every other class, too few to fit a reliable layer on, so big rock was left out of the label set. The deployed classifier has three outputs and literally cannot answer "big rock", regardless of encoder size.</span>
+        <span data-lang-th>ชุดข้อมูลมีภาพหินก้อนใหญ่ที่มี label แค่ 108 ภาพ เทียบกับคลาสอื่นที่มีราว 1,000 ภาพ น้อยเกินกว่าจะเทรนชั้นบนให้เชื่อถือได้ หินก้อนใหญ่จึงถูกตัดออกจากชุด label ตัวจำแนกที่ติดตั้งจริงมีเอาต์พุตสามทาง จึงตอบ "หินก้อนใหญ่" ไม่ได้ ไม่ว่า encoder จะใหญ่แค่ไหน</span>
       </p>
       <p>
         <span data-lang-en>What is not definitional, and what actually matters, is what the model says instead.</span>
@@ -1413,8 +1416,8 @@
 
     <div class="prose">
       <p>
-        <span data-lang-en>The finding was checked rather than left as one offline result. Across 214 camera frames captured during live hardware operation, big rock was never predicted once, including on 21 frames of actual rocks. Across twelve autonomous runs the rover repeatedly drove towards and faced a printed rock panel and never read it correctly. Swapping in a much larger encoder did not fix it, which points at the training imbalance rather than at model capacity.</span>
-        <span data-lang-th>ข้อค้นพบนี้ผ่านการตรวจซ้ำ ไม่ได้ปล่อยไว้เป็นผลออฟไลน์ครั้งเดียว ในเฟรมภาพ 214 เฟรมที่เก็บตอนฮาร์ดแวร์ทำงานจริง โมเดลไม่เคยทายว่าเป็นหินก้อนใหญ่เลยสักครั้ง รวมถึง 21 เฟรมที่เป็นหินจริง ๆ และในการวิ่งอัตโนมัติ 12 รอบ โรเวอร์ขับเข้าหาและหันหน้าเข้าแผ่นภาพหินซ้ำแล้วซ้ำอีก แต่ไม่เคยอ่านถูกเลย เปลี่ยนไปใช้ encoder ที่ใหญ่กว่ามากก็ยังไม่หาย ซึ่งชี้ว่าปัญหาอยู่ที่ข้อมูลเทรนไม่สมดุล ไม่ใช่ที่ความสามารถของโมเดล</span>
+        <span data-lang-en>Checked, not left as one offline result. Across 214 live camera frames, big rock was never predicted once, including 21 frames of actual rocks. Across 12 autonomous runs the rover repeatedly faced a printed rock panel and never read it correctly. A much larger encoder didn't fix it — the problem is training imbalance, not model capacity.</span>
+        <span data-lang-th>ข้อค้นพบนี้ผ่านการตรวจซ้ำ ไม่ใช่ผลออฟไลน์ครั้งเดียว ในเฟรมภาพ 214 เฟรมตอนฮาร์ดแวร์ทำงานจริง โมเดลไม่เคยทายว่าเป็นหินก้อนใหญ่เลย รวม 21 เฟรมที่เป็นหินจริง และในการวิ่ง 12 รอบ โรเวอร์หันหน้าเข้าแผ่นภาพหินซ้ำแล้วซ้ำอีกแต่ไม่เคยอ่านถูก เปลี่ยนไปใช้ encoder ใหญ่กว่าก็ไม่หาย ปัญหาจึงอยู่ที่ข้อมูลเทรนไม่สมดุล ไม่ใช่ความสามารถของโมเดล</span>
       </p>
       <p>
         <span data-lang-en>There is a second gap in the same direction. The model has no ability to reject what lies outside its training distribution at all. Seventeen photographs of campus building walls were all classified as soil, at confidences up to 0.99. A wall is not terrain, and the model had no way of saying so.</span>
@@ -1458,8 +1461,8 @@
       <p class="eyebrow"><span data-lang-en>What it adds up to</span><span data-lang-th>สรุปแล้วได้อะไร</span></p>
       <h2><span data-lang-en>Close enough to matter, honest about where it is not</span><span data-lang-th>ใกล้พอที่จะมีความหมาย และพูดตรงเรื่องที่ยังไปไม่ถึง</span></h2>
       <p>
-        <span data-lang-en>A vision foundation model that was never shown a single Mars image during pretraining, kept entirely frozen, and given a thin trained layer costing a fifth of a millisecond, lands within 2.24 points of a network built and fully trained for this exact task. It runs on a Raspberry Pi in a rover with no GPU, and in simulation it never once let an unsafe misclassification through.</span>
-        <span data-lang-th>vision foundation model ที่ตอน pretrain ไม่เคยเห็นภาพดาวอังคารแม้แต่ภาพเดียว ถูกล็อกน้ำหนักไว้ทั้งตัว แล้วต่อชั้นบาง ๆ ที่เทรนเพิ่มซึ่งกินเวลาแค่หนึ่งในห้าของมิลลิวินาที ทำได้ห่างจากเครือข่ายที่สร้างและเทรนมาเพื่องานนี้โดยตรงแค่ 2.24 จุด มันรันบน Raspberry Pi ในโรเวอร์ที่ไม่มี GPU และในซิมูเลชันก็ไม่เคยปล่อยให้การจำแนกผิดที่อันตรายหลุดออกไปเลยสักครั้ง</span>
+        <span data-lang-en>A frozen foundation model that never saw a single Mars image, plus a thin trained layer costing a fifth of a millisecond, lands within 2.24 points of a network fully trained for this exact task — on a Raspberry Pi with no GPU, without ever letting an unsafe call through in simulation.</span>
+        <span data-lang-th>vision foundation model ที่ไม่เคยเห็นภาพดาวอังคารเลย ถูกล็อกน้ำหนักไว้ทั้งตัว ต่อชั้นบาง ๆ ที่เทรนเพิ่มกินเวลาแค่หนึ่งในห้าของมิลลิวินาที ทำได้ห่างจากเครือข่ายที่เทรนมาเพื่องานนี้โดยตรงแค่ 2.24 จุด รันบน Raspberry Pi ที่ไม่มี GPU และไม่เคยปล่อยการจำแนกผิดที่อันตรายหลุดออกไปในซิมูเลชันเลย</span>
       </p>
       <p>
         <span data-lang-en>The honest counterweight is that the safety guarantee is class-specific. It holds for soil and it degrades gracefully for sand, but it does not survive contact with a rock the model was never taught to name, because the model does not know that it does not know. Both halves of that sentence are the result.</span>
