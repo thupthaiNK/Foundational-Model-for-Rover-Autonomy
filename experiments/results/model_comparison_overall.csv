@@ -1,0 +1,23 @@
+rank,model,paradigm,training_data_imgs,overall_pct,soil_pct,bedrock_pct,sand_pct,gap_vs_supervised_pp,notes
+0,DeepLabv3+ (supervised),Supervised,16064,96.67,99.1,94.9,93.5,0.00,Supervised baseline
+1,DINOv3 ViT-S/16 1000-shot,Self-supervised + LogReg,4000,90.2,97.6,83.7,86.1,-6.47,New best non-supervised
+2,DINOv2 ViT-S/14 1000-shot,Self-supervised + LogReg,4000,89.90,97.56,84.78,83.33,-6.77,Best bedrock at 1000-shot
+3,DINOv3 + Depth fusion 1000-shot,Self-supervised + LogReg (fusion),4000,89.9,,81.5,,-6.77,No improvement over DINOv3 alone
+4,CLIP ViT-B/32 1000-shot,Contrastive + LogReg,4000,87.8,95.9,79.3,84.7,-8.87,
+5,Tip-Adapter DINOv2 1000-shot,Training-free few-shot,4000,85.02,,,,−11.65,Worse than LogReg by 4.88pp
+6,DINOv2 ViT-S/14 100-shot,Self-supervised + LogReg,400,81.18,96.75,55.43,87.50,-15.49,
+7,DINOv3 ViT-S/16 100-shot,Self-supervised + LogReg,400,80.5,95.9,60.9,79.2,-16.17,
+8,BLIP-2 2.7B q1,Zero-shot VLM,0,80.0,100.0,0.0,,-16.67,PRELIMINARY n=20 — not representative
+9,CLIP ViT-B/32 100-shot,Contrastive + LogReg,400,76.0,87.8,62.0,73.6,-20.67,
+10,Tip-Adapter CLIP 1000-shot,Training-free few-shot,4000,69.34,,,,−27.33,Worse than LogReg by 18.46pp
+11,DINOv3 ViT-S/16 10-shot,Self-supervised + LogReg,40,58.5,51.2,65.2,62.5,-38.17,Best bedrock at 10-shot (+8.7pp vs DINOv2)
+12,CLIP ViT-B/32 10-shot,Contrastive + LogReg,40,57.5,82.1,15.2,69.4,-39.17,
+13,DINOv2 ViT-S/14 10-shot,Self-supervised + LogReg,40,56.79,48.78,56.52,70.83,-39.88,
+14,CLIP ViT-B/32 prompt eng. v9,Zero-shot,0,54.4,95.9,18.5,29.2,-42.27,Best zero-shot overall
+15,MobileCLIP S0 zero-shot,Zero-shot,0,53.6,92.7,15.1,38.4,-43.07,146ms/img — fastest
+16,SmolVLM-256M,Zero-shot VLM,0,49.78,67.3,21.9,50.0,-46.89,parse_fail 21.6%
+17,SmolVLM2-256M,Zero-shot VLM,0,48.0,4.5,76.7,79.7,-48.67,parse_fail 6.3%; 37765ms/img
+18,CLIP ViT-B/32 zero-shot v1,Zero-shot,0,34.8,64.2,2.2,26.4,-61.87,Baseline zero-shot
+19,Depth Anything V2 1000-shot,Geometric + LogReg,4000,36.6,,9.8,,-60.07,grad_mean F=0.12 — domain gap
+20,Depth Anything V2 100-shot,Geometric + LogReg,400,30.3,,7.6,,-66.37,
+21,Depth Anything V2 10-shot,Geometric + LogReg,40,19.5,,18.5,,-77.17,

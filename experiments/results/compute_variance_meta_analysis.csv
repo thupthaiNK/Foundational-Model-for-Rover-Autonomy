@@ -1,0 +1,7 @@
+config,n_samples,n_windows,overall_rtf,windowed_rtf_mean,windowed_rtf_stdev,windowed_rtf_min,windowed_rtf_max
+baseline,193,19,0.805,0.844,0.259,0.368,1.702
+frictiononly,194,19,0.842,0.865,0.132,0.395,1.0
+hightorque_lowfriction,194,19,0.838,0.851,0.122,0.417,1.0
+multiwheel,193,19,0.879,0.928,0.306,0.394,1.985
+multiwheel_run2,186,18,0.817,0.867,0.129,0.5,0.951
+torqueonly,193,19,0.876,0.888,0.108,0.576,0.951

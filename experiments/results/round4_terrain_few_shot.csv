@@ -1,0 +1,5 @@
+model,overall_1000shot,soil,bedrock,sand,ms_per_img,vs_ensembleB,verdict
+DINOv3 ConvNeXt-Tiny (29M),87.80,97.56,80.43,80.56,170.3,-6.63,❌ below baseline
+DINOv2+registers ViT-S (21M),90.24,95.93,84.78,87.50,180.7,-4.19,≈ parity
+DINOv2+registers ViT-B (86M),91.99,97.56,88.04,87.50,471.2,-2.44,≈ parity
+"DINOv3-SAT ViT-L (300M, satellite)",90.94,91.87,93.48,86.11,1316.6,-3.49,≈ parity

@@ -1,0 +1,294 @@
+image,gt,pred,ms,answer,correct
+NLA_409036116EDR_F0051606NCAM00348M1,bedrock,big_rock,52900,Gravel,False
+NLA_409036860EDR_F0051662NCAM00346M1,bedrock,bedrock,38655,The ground surface is rocky.,True
+NLA_409036993EDR_F0051662NCAM05703M1,bedrock,bedrock,39604,The ground surface is rocky.,True
+NLA_409037112EDR_F0051662NCAM05703M1,bedrock,bedrock,42937,The ground surface is cracked.,True
+NLA_601414568EDR_F0731482NCAM00253M1,soil,bedrock,41871,The ground surface is rocky.,False
+NLA_601414993EDR_F0731482NCAM00254M1,soil,bedrock,43189,"The ground surface is a barren, rocky",False
+NLA_601415225EDR_F0731482NCAM00254M1,soil,bedrock,42726,The ground surface is rocky.,False
+NLA_601421002EDR_F0731482CCAM05295M1,soil,bedrock,38087,The ground surface is rocky.,False
+NLA_602651352EDR_F0732676NCAM00207M1,soil,bedrock,38875,The ground surface is a rocky surface.,False
+NLA_602657189EDR_F0732688NCAM00382M1,soil,bedrock,40545,"The ground surface is a barren, rocky",False
+NLA_602664101EDR_F0732958NCAM00375M1,soil,bedrock,39172,The ground surface is rocky.,False
+NLA_602664178EDR_F0732958NCAM00271M1,soil,bedrock,39251,The ground surface is rocky.,False
+NLA_602664242EDR_F0732958NCAM00271M1,soil,sand,40262,The ground surface is a desert.,False
+NLA_602664684EDR_F0732958NCAM00312M1,soil,?,37155,Snow,parse_fail
+NLA_602664993EDR_F0732958NCAM00272M1,soil,bedrock,38684,The ground surface is rocky.,False
+NLA_602665055EDR_F0732958NCAM00272M1,soil,bedrock,38071,The ground surface is rocky.,False
+NLB_427501146EDR_F0080590NCAM00385M1,soil,bedrock,37174,The ground surface is rocky.,False
+NLB_427503509EDR_F0080610NCAM00253M1,soil,bedrock,38028,"The ground surface is a barren, rocky",False
+NLB_427503571EDR_F0080610NCAM00253M1,soil,sand,37724,The ground surface is a desert.,False
+NLB_428295522EDR_F0100474NCAM00385M1,soil,sand,38879,The ground surface is a desert.,False
+NLB_428304492EDR_F0100508NCAM05114M1,soil,bedrock,37996,"The ground surface is a barren, rocky",False
+NLB_428304609EDR_F0100508NCAM05114M1,soil,bedrock,36999,The ground surface is a rocky terrain.,False
+NLB_431505395EDR_F0141388NCAM00385M1,soil,bedrock,37188,The ground surface is rocky.,False
+NLB_431511171EDR_F0150000NCAM00290M1,soil,soil,37438,"The ground surface is a dusty, rocky",True
+NLB_431511237EDR_F0150000NCAM00290M1,soil,bedrock,37258,The ground surface is rocky.,False
+NLB_431511659EDR_F0150000NCAM00291M1,soil,?,37804,The ground surface is dark.,parse_fail
+NLB_431511862EDR_F0150000NCAM00354M1,soil,bedrock,36321,The ground surface is a rocky surface.,False
+NLB_436380021EDR_F0211362NCAM00278M1,soil,bedrock,37114,The ground surface is rocky.,False
+NLB_436380133EDR_F0211362NCAM00278M1,bedrock,bedrock,38918,The ground surface is rocky.,True
+NLB_436383872EDR_F0211362NCAM00354M1,bedrock,bedrock,38431,The ground surface is rocky.,True
+NLB_436383928EDR_F0211362NCAM00354M1,bedrock,bedrock,36619,The ground surface is rocky.,True
+NLB_436384026EDR_F0211362NCAM00279M1,bedrock,bedrock,36829,The ground surface is rocky.,True
+NLB_436384203EDR_F0211362NCAM00279M1,bedrock,sand,36048,The ground surface is sand.,False
+NLB_439225164EDR_F0240000NCAM05113M1,soil,bedrock,37072,The ground surface is rocky.,False
+NLB_439225290EDR_F0240000NCAM05113M1,soil,?,37831,The ground surface is black.,parse_fail
+NLB_439225843EDR_F0240000NCAM00267M1,soil,bedrock,36019,"The ground surface is a barren, rocky",False
+NLB_439225957EDR_F0240000NCAM00267M1,soil,sand,35751,The ground surface is sand.,False
+NLB_439226019EDR_F0240000NCAM00267M1,soil,bedrock,36399,The ground surface is a rocky terrain.,False
+NLB_439226061EDR_F0240000NCAM00350M1,soil,bedrock,39294,The ground surface is rocky.,False
+NLB_439226140EDR_F0240000NCAM00350M1,soil,bedrock,38102,"The ground surface is a rugged, rocky",False
+NLB_442591818EDR_F0250254NCAM00470M1,soil,bedrock,37801,The ground surface is rocky.,False
+NLB_442592358EDR_F0250272NCAM00385M1,soil,sand,36600,The ground surface is a desert.,False
+NLB_442593301EDR_F0250312NCAM00353M1,soil,bedrock,37050,The ground surface is rocky.,False
+NLB_442598077EDR_F0250312NCAM00281M1,soil,bedrock,37065,The ground surface is a rocky terrain.,False
+NLB_442598204EDR_F0250312NCAM00281M1,soil,bedrock,37070,The ground surface is rocky.,False
+NLB_442600163EDR_F0250312NCAM00350M1,soil,bedrock,39414,The ground surface is rocky.,False
+NLB_442600208EDR_F0250312NCAM00282M1,soil,?,35910,The ground surface is dark.,parse_fail
+NLB_442600301EDR_F0250312NCAM00282M1,soil,bedrock,40801,The ground surface is rocky.,False
+NLB_442600416EDR_F0250312NCAM00282M1,soil,sand,37699,The ground surface is a desert.,False
+NLB_442600447EDR_F0250312NCAM00282M1,soil,sand,59349,The ground surface is a desert.,False
+NLB_443659348EDR_F0251082NCAM00470M1,soil,bedrock,53396,The ground surface is rocky.,False
+NLB_443663198EDR_F0251238NCAM00353M1,soil,bedrock,49727,The ground surface is rocky.,False
+NLB_443663262EDR_F0251238NCAM00289M1,soil,bedrock,47045,The ground surface is rocky.,False
+NLB_443663326EDR_F0251238NCAM00289M1,soil,bedrock,39855,The ground surface is rocky.,False
+NLB_443668744EDR_F0251238NCAM00292M1,soil,?,40574,The ground surface is dark.,parse_fail
+NLB_443668806EDR_F0251238NCAM00292M1,soil,bedrock,40481,The ground surface is rocky.,False
+NLB_443668921EDR_F0251238NCAM00292M1,soil,bedrock,40358,The ground surface is rocky.,False
+NLB_443669058EDR_F0251238NCAM00352M1,soil,?,40453,The ground surface in this Mars rover image,parse_fail
+NLB_443669122EDR_F0251238NCAM00352M1,soil,bedrock,40807,The ground surface is a rocky terrain.,False
+NLB_448278207EDR_F0300432NCAM00380M1,soil,sand,40373,The ground surface is a desert.,False
+NLB_448279148EDR_F0300484NCAM00353M1,soil,bedrock,38238,The ground surface is rocky.,False
+NLB_448279299EDR_F0300484NCAM00299M1,soil,sand,37617,The ground surface is a desert.,False
+NLB_448279809EDR_F0300484NCAM00354M1,soil,sand,37117,The ground surface is a desert.,False
+NLB_448279926EDR_F0300484NCAM00250M1,soil,bedrock,37936,The ground surface is rocky.,False
+NLB_448279988EDR_F0300484NCAM00250M1,soil,?,36337,"The ground surface is a dark, uneven",parse_fail
+NLB_448280142EDR_F0300484NCAM00250M1,soil,bedrock,37842,The ground surface is rocky.,False
+NLB_453776957EDR_F0320204NCAM00498M1,soil,?,37021,Tarmac,parse_fail
+NLB_453777056EDR_F0320204NCAM00497M1,soil,sand,37131,The ground surface is a desert.,False
+NLB_453780775EDR_F0320478NCAM00353M1,soil,bedrock,37099,The ground surface is a rocky surface.,False
+NLB_453780853EDR_F0320478NCAM00281M1,soil,bedrock,37370,The ground surface is a rocky terrain.,False
+NLB_453781520EDR_F0320478NCAM00282M1,soil,bedrock,38616,"The ground surface is a barren, rocky",False
+NLB_453781647EDR_F0320478NCAM00282M1,soil,sand,36100,Sand,False
+NLB_454576834EDR_F0330660NCAM00291M1,soil,sand,36599,The ground surface is a desert.,False
+NLB_454577689EDR_F0330660NCAM00350M1,soil,bedrock,37295,The ground surface is a rocky surface.,False
+NLB_454577808EDR_F0330660NCAM00350M1,soil,bedrock,37337,The ground surface is a rocky surface.,False
+NLB_454577843EDR_F0330660NCAM00292M1,soil,sand,36380,Sand,False
+NLB_454577912EDR_F0330660NCAM00292M1,soil,soil,38543,The ground surface is dusty.,True
+NLB_455641497EDR_F0340774NCAM00251M1,soil,bedrock,35541,"The ground surface is a barren, rocky",False
+NLB_455642442EDR_F0340774NCAM00252M1,soil,big_rock,36015,Gravel,False
+NLB_455642480EDR_F0340774NCAM00252M1,soil,bedrock,36677,"The ground surface is a barren, rocky",False
+NLB_455642594EDR_F0340774NCAM00252M1,soil,bedrock,36365,"The ground surface is a barren, rocky",False
+NLB_457064543EDR_F0371542NCAM00273M1,soil,soil,36883,The ground surface is dusty.,True
+NLB_457065016EDR_F0371542NCAM00354M1,soil,bedrock,37004,The ground surface is a rocky surface.,False
+NLB_457065086EDR_F0371542NCAM00354M1,soil,bedrock,36656,The ground surface is rocky.,False
+NLB_457072541EDR_F0371542NCAM00274M1,soil,?,36975,The ground surface is dark.,parse_fail
+NLB_457072755EDR_F0371542NCAM00274M1,soil,bedrock,37784,"The ground surface is a barren, rocky",False
+NLB_457152468EDR_F0380000NCAM00346M1,sand,bedrock,37764,The ground surface is a rocky surface.,False
+NLB_457152554EDR_F0380000NCAM00275M1,sand,sand,38912,Sand,True
+NLB_457153024EDR_F0380000NCAM00354M1,sand,sand,36936,Sand,True
+NLB_457153056EDR_F0380000NCAM00354M1,sand,sand,43068,Sand,True
+NLB_457153156EDR_F0380000NCAM00354M1,sand,sand,39958,Sand,True
+NLB_457153643EDR_F0380000NCAM00276M1,sand,sand,36074,Sand,True
+NLB_457153706EDR_F0380000NCAM00276M1,sand,sand,36837,Sand,True
+NLB_459290932EDR_F0391552NCAM00354M1,soil,bedrock,38741,The ground surface is rocky.,False
+NLB_459291152EDR_F0391552NCAM00252M1,soil,bedrock,36001,"The ground surface is a barren, rocky",False
+NLB_459291220EDR_F0391552NCAM00252M1,soil,bedrock,36822,The ground surface is rocky.,False
+NLB_462743799EDR_F0410322NCAM00271M1,soil,bedrock,35802,The ground surface is rocky.,False
+NLB_462744982EDR_F0410322NCAM00272M1,soil,bedrock,36697,The ground surface is rocky.,False
+NLB_463099226EDR_F0410712NCAM00385M1,bedrock,big_rock,37664,Gravel,False
+NLB_463107188EDR_F0410748NCAM00274M1,sand,sand,36579,Sand,True
+NLB_463107562EDR_F0410748NCAM00354M1,bedrock,bedrock,36674,The ground surface is cracked.,True
+NLB_463107626EDR_F0410748NCAM00354M1,bedrock,big_rock,35178,Gravel,False
+NLB_463107697EDR_F0410748NCAM00354M1,bedrock,bedrock,35635,The ground surface is rocky.,True
+NLB_463107797EDR_F0410748NCAM07753M1,bedrock,bedrock,35808,The ground surface is rocky.,True
+NLB_463107949EDR_F0410748NCAM07753M1,bedrock,sand,36889,The ground surface is sand.,False
+NLB_463803954EDR_F0411768NCAM00382M1,sand,sand,35564,The ground surface is sand.,True
+NLB_463813170EDR_F0420000NCAM06094M1,sand,sand,35952,The ground surface is sand.,True
+NLB_463813296EDR_F0420000NCAM06094M1,soil,bedrock,35953,"The ground surface is a barren, rocky",False
+NLB_463814148EDR_F0420000NCAM00354M1,soil,bedrock,36933,The ground surface is a rocky terrain.,False
+NLB_463814218EDR_F0420000NCAM00354M1,soil,bedrock,36081,The ground surface is rocky.,False
+NLB_463814255EDR_F0420000NCAM00278M1,soil,bedrock,39067,"The ground surface is a barren, rocky",False
+NLB_492664173EDR_F0490294NCAM00294M1,bedrock,bedrock,37093,The ground surface is rocky.,True
+NLB_492664235EDR_F0490294NCAM00294M1,bedrock,bedrock,36790,The ground surface is rocky.,True
+NLB_492664291EDR_F0490294NCAM00294M1,bedrock,bedrock,37019,The ground surface is rocky.,True
+NLB_492664491EDR_F0490294NCAM00354M1,bedrock,bedrock,36099,The ground surface is rocky.,True
+NLB_492664554EDR_F0490294NCAM00354M1,sand,bedrock,37928,The ground surface is rocky.,False
+NLB_492664625EDR_F0490294NCAM00354M1,bedrock,bedrock,36707,The ground surface is rocky.,True
+NLB_492664901EDR_F0490294NCAM00295M1,bedrock,bedrock,36239,The ground surface is rocky.,True
+NLB_493996330EDR_F0491846NCAM00385M1,sand,sand,35598,Sand,True
+NLB_493996945EDR_F0491876NCAM00353M1,bedrock,bedrock,37401,The ground surface is rocky.,True
+NLB_493997715EDR_F0491876NCAM00256M1,sand,sand,46906,Sand,True
+NLB_493997775EDR_F0491876NCAM00256M1,bedrock,bedrock,39424,The ground surface is rocky.,True
+NLB_493997895EDR_F0491876NCAM00354M1,bedrock,bedrock,38652,Rock.,True
+NLB_493997974EDR_F0491876NCAM00354M1,sand,bedrock,44057,The ground surface is rocky.,False
+NLB_493998022EDR_F0491876NCAM00257M1,bedrock,sand,43466,Sand,False
+NLB_493998141EDR_F0491876NCAM00257M1,sand,sand,39002,Sand,True
+NLB_493998256EDR_F0491876NCAM00257M1,sand,bedrock,40793,The ground surface is rocky.,False
+NLB_500655478EDR_F0503000NCAM00385M1,bedrock,soil,38723,Dirt,False
+NLB_500656502EDR_F0503076NCAM00353M1,bedrock,bedrock,37952,The ground surface is rocky.,True
+NLB_500661494EDR_F0503076NCAM00354M1,bedrock,big_rock,38163,Gravel,False
+NLB_500661565EDR_F0503076NCAM00354M1,bedrock,bedrock,38357,The ground surface is rocky.,True
+NLB_500661664EDR_F0503076NCAM07753M1,bedrock,bedrock,38986,The ground surface is rocky.,True
+NLB_500661727EDR_F0503076NCAM07753M1,bedrock,bedrock,39027,The ground surface is cracked and uneven.,True
+NLB_500661784EDR_F0503076NCAM07753M1,bedrock,big_rock,38072,Gravel,False
+NLB_502512171EDR_F0511298NCAM00320M1,sand,sand,38306,The ground surface is a desert.,True
+NLB_502515217EDR_F0511406NCAM00418M1,sand,sand,37705,Sand,True
+NLB_502516548EDR_F0511430NCAM00353M1,sand,sand,40439,Sand,True
+NLB_502516765EDR_F0511430NCAM00419M1,sand,sand,40859,The ground surface is sand.,True
+NLB_502516974EDR_F0511430NCAM09842M1,sand,sand,36314,Sand,True
+NLB_502517100EDR_F0511430NCAM09842M1,sand,sand,37281,Sand,True
+NLB_502517193EDR_F0511430NCAM09842M1,sand,sand,35848,Sand,True
+NLB_504390796EDR_F0520004NCAM00354M1,bedrock,bedrock,35196,The ground surface is rocky.,True
+NLB_504390846EDR_F0520004NCAM00354M1,bedrock,bedrock,38495,The ground surface is a rocky terrain.,True
+NLB_504391195EDR_F0520004NCAM07753M1,sand,sand,35894,The ground surface is a desert.,True
+NLB_504391382EDR_F0520004NCAM07753M1,sand,bedrock,33874,The ground surface is rocky.,False
+NLB_505891855EDR_F0521112NCAM00319M1,sand,?,36633,The ground surface is not mentioned in the,parse_fail
+NLB_505898310EDR_F0521162NCAM12753M1,bedrock,?,34992,The ground surface is barren.,parse_fail
+NLB_505898372EDR_F0521162NCAM12753M1,bedrock,bedrock,34853,"The ground surface is a barren, rocky",True
+NLB_505898434EDR_F0521162NCAM12753M1,sand,sand,36083,Sand,True
+NLB_505898711EDR_F0521162NCAM12753M1,sand,?,35654,The ground surface is dark.,parse_fail
+NLB_505898763EDR_F0521162NCAM00353M1,sand,sand,34226,The ground surface is sand.,True
+NLB_505900047EDR_F0521162NCAM00352M1,sand,sand,34236,The ground surface is sand.,True
+NLB_512555058EDR_F0532644NCAM00264M1,sand,sand,34351,Sand,True
+NLB_512555120EDR_F0532644NCAM00264M1,bedrock,sand,34207,Sand,False
+NLB_512555645EDR_F0532644NCAM00354M1,sand,sand,33798,Sand,True
+NLB_512555867EDR_F0532644NCAM07753M1,bedrock,sand,34816,Sand,False
+NLB_520358689EDR_F0550940NCAM00299M1,bedrock,bedrock,34606,The ground surface is rocky.,True
+NLB_520358799EDR_F0550940NCAM00299M1,bedrock,bedrock,35624,The ground surface is rocky.,True
+NLB_520359057EDR_F0550940NCAM00654M1,bedrock,bedrock,35614,The ground surface is rocky.,True
+NLB_520359112EDR_F0550940NCAM00654M1,bedrock,bedrock,34024,The ground surface is rocky.,True
+NLB_520359279EDR_F0550940NCAM07753M1,bedrock,sand,37899,Sand,False
+NLB_520359399EDR_F0550940NCAM07753M1,bedrock,sand,34031,The ground surface is a desert.,False
+NLB_525149027EDR_F0570774NCAM00287M1,bedrock,bedrock,35432,The ground surface is rocky.,True
+NLB_525149336EDR_F0570774NCAM00654M1,bedrock,bedrock,34026,The ground surface is rocky.,True
+NLB_525149367EDR_F0570774NCAM00654M1,bedrock,bedrock,35326,The ground surface is rocky.,True
+NLB_525149424EDR_F0570774NCAM00654M1,bedrock,bedrock,34628,The ground surface is rocky.,True
+NLB_525149485EDR_F0570774NCAM07753M1,bedrock,bedrock,36501,The ground surface is rocky.,True
+NLB_525149717EDR_F0570774NCAM07753M1,bedrock,bedrock,34517,The ground surface is cracked.,True
+NLB_527820640EDR_F0580000NCAM00253M1,bedrock,bedrock,35201,The ground surface is rocky.,True
+NLB_527820910EDR_F0580000NCAM00654M1,bedrock,bedrock,34270,The ground surface is rocky.,True
+NLB_527820942EDR_F0580000NCAM00654M1,bedrock,bedrock,34192,The ground surface is rocky.,True
+NLB_527821074EDR_F0580000NCAM07753M1,sand,bedrock,34225,The ground surface is rocky.,False
+NLB_527821213EDR_F0580000NCAM07753M1,bedrock,bedrock,34388,The ground surface is rocky.,True
+NLB_527821275EDR_F0580000NCAM07753M1,bedrock,bedrock,34177,The ground surface is rocky.,True
+NLB_528875763EDR_F0581002NCAM00207M1,bedrock,bedrock,34964,The ground surface is rocky.,True
+NLB_528892751EDR_F0581248NCAM00346M1,bedrock,bedrock,35375,The ground surface is rocky.,True
+NLB_528892900EDR_F0581248NCAM00262M1,bedrock,bedrock,34609,The ground surface is rocky.,True
+NLB_528893088EDR_F0581248NCAM07753M1,bedrock,bedrock,33697,The ground surface is rocky.,True
+NLB_528893506EDR_F0581248NCAM00654M1,bedrock,bedrock,37019,The ground surface is rocky.,True
+NLB_528893599EDR_F0581248NCAM00654M1,bedrock,bedrock,34262,The ground surface is rocky.,True
+NLB_537932733EDR_F0600888NCAM00320M1,sand,sand,34228,The ground surface is a desert.,True
+NLB_537938493EDR_F0601266NCAM00653M1,sand,bedrock,34243,The ground surface is rocky.,False
+NLB_537938609EDR_F0601266NCAM07753M1,sand,sand,33470,Sand,True
+NLB_541040424EDR_F0610954NCAM00305M1,bedrock,bedrock,34250,The ground surface is rocky.,True
+NLB_541042107EDR_F0611086NCAM00385M1,sand,sand,35381,Sand,True
+NLB_541043499EDR_F0611140NCAM00346M1,sand,sand,34286,The ground surface is sand.,True
+NLB_541043637EDR_F0611140NCAM00653M1,sand,bedrock,34111,The ground surface is rocky.,False
+NLB_541049254EDR_F0611140NCAM12753M1,sand,bedrock,34137,The ground surface is a rocky terrain.,False
+NLB_541049316EDR_F0611140NCAM12753M1,sand,sand,34439,The ground surface is sand.,True
+NLB_542730497EDR_F0612232NCAM00282M1,sand,sand,35443,Sand,True
+NLB_542733799EDR_F0612232NCAM00353M1,sand,sand,35620,The ground surface is a desert.,True
+NLB_542734078EDR_F0612232NCAM00654M1,sand,sand,34816,The ground surface is sand.,True
+NLB_542734110EDR_F0612232NCAM00654M1,sand,sand,34145,Sand,True
+NLB_542734199EDR_F0612232NCAM00654M1,sand,sand,35503,The ground surface is sand.,True
+NLB_542734240EDR_F0612232NCAM00283M1,sand,sand,38644,The ground surface is sand.,True
+NLB_542734362EDR_F0612232NCAM00283M1,sand,sand,34265,Sand,True
+NLB_542738036EDR_F0612232CCAM15903M1,sand,sand,36174,Sand,True
+NLB_543357370EDR_F0613076NCAM00287M1,sand,sand,33812,Sand,True
+NLB_543357433EDR_F0613076NCAM00287M1,sand,bedrock,34625,The ground surface is rocky.,False
+NLB_548047620EDR_F0630346NCAM00320M1,bedrock,bedrock,34290,The ground surface is rocky.,True
+NLB_548057490EDR_F0630724NCAM00385M1,bedrock,sand,34193,Sand,False
+NLB_548058260EDR_F0630766NCAM00375M1,bedrock,bedrock,34007,The ground surface is covered with rocks.,True
+NLB_548058358EDR_F0630766NCAM00273M1,bedrock,sand,35308,Sand,False
+NLB_548063838EDR_F0630766NCAM07753M1,bedrock,bedrock,34176,The ground surface is a rocky terrain.,True
+NLB_552665174EDR_F0641980NCAM00320M1,sand,sand,34735,The ground surface is a desert.,True
+NLB_552676131EDR_F0642004NCAM00385M1,sand,sand,33733,Sand,True
+NLB_552677384EDR_F0642088NCAM00376M1,sand,sand,34918,Sand,True
+NLB_552677513EDR_F0642088NCAM00255M1,sand,bedrock,33945,The ground surface is rocky.,False
+NLB_552677608EDR_F0642088NCAM00255M1,sand,sand,34062,Sand,True
+NLB_552677960EDR_F0642088NCAM00354M1,sand,sand,33434,Sand,True
+NLB_552678040EDR_F0642088NCAM00354M1,sand,sand,33999,Sand,True
+NLB_552682049EDR_F0642088NCAM07753M1,sand,sand,34568,Sand,True
+NLB_552682173EDR_F0642088NCAM07753M1,sand,sand,33439,The ground surface is sand.,True
+NLB_556418003EDR_F0651174NCAM00320M1,sand,sand,33536,The ground surface is sand.,True
+NLB_556756244EDR_F0651642NCAM00285M1,sand,sand,36132,The ground surface is sand.,True
+NLB_556756308EDR_F0651642NCAM00285M1,sand,sand,33994,The ground surface is sand.,True
+NLB_556756606EDR_F0651642NCAM00312M1,sand,sand,34775,The ground surface is a desert.,True
+NLB_556763962EDR_F0651642NCAM07753M1,sand,sand,33894,The ground surface is sand.,True
+NLB_556764110EDR_F0651642NCAM07753M1,sand,?,33943,The ground surface is barren.,parse_fail
+NLB_556764172EDR_F0651642NCAM07753M1,sand,sand,33459,Sand,True
+NLB_558363908EDR_F0660000NCAM00375M1,bedrock,bedrock,34780,The ground surface is rocky.,True
+NLB_558364034EDR_F0660000NCAM00252M1,bedrock,big_rock,34594,Gravel,False
+NLB_558364829EDR_F0660000NCAM00253M1,bedrock,bedrock,35743,The ground surface is rocky.,True
+NLB_558364943EDR_F0660000NCAM00253M1,bedrock,?,33966,The ground surface is barren.,parse_fail
+NLB_558365006EDR_F0660000NCAM00253M1,bedrock,bedrock,33940,The ground surface is rocky.,True
+NLB_558365068EDR_F0660000NCAM00253M1,bedrock,bedrock,34620,The ground surface is a rocky terrain.,True
+NLB_560302217EDR_F0660952NCAM00320M1,bedrock,bedrock,34136,The ground surface is rocky.,True
+NLB_560310464EDR_F0661030NCAM00385M1,bedrock,big_rock,33410,Gravel,False
+NLB_560311677EDR_F0661112NCAM00353M1,bedrock,bedrock,34270,The ground surface is rocky.,True
+NLB_560311785EDR_F0661112NCAM00273M1,bedrock,bedrock,34428,"The ground surface is a barren, rocky",True
+NLB_560311842EDR_F0661112NCAM00273M1,bedrock,bedrock,35213,The ground surface is cracked.,True
+NLB_560311891EDR_F0661112NCAM00273M1,bedrock,big_rock,33230,Gravel,False
+NLB_560312189EDR_F0661112NCAM00354M1,bedrock,bedrock,36507,The ground surface is rocky.,True
+NLB_560316500EDR_F0661112NCAM00274M1,bedrock,big_rock,34769,Gravel,False
+NLB_560316562EDR_F0661112NCAM00274M1,bedrock,bedrock,36056,"The ground surface is a barren, rocky",True
+NLB_560316739EDR_F0661112NCAM00274M1,bedrock,bedrock,33846,The ground surface is a rocky terrain.,True
+NLB_565016252EDR_F0670180NCAM00385M1,soil,bedrock,34036,The ground surface is rocky.,False
+NLB_565022734EDR_F0670216NCAM00375M1,soil,bedrock,34817,The ground surface is rocky.,False
+NLB_565022803EDR_F0670216NCAM00252M1,soil,bedrock,36471,The ground surface is rocky.,False
+NLB_565022931EDR_F0670216NCAM00252M1,soil,bedrock,35143,The ground surface is a rocky terrain.,False
+NLB_565023199EDR_F0670216NCAM00312M1,soil,bedrock,34201,The ground surface is rocky.,False
+NLB_565023322EDR_F0670216NCAM00253M1,soil,?,34552,The ground surface is dark.,parse_fail
+NLB_565023592EDR_F0670216NCAM00253M1,soil,bedrock,34365,The ground surface is rocky.,False
+NLB_565365464EDR_F0670550NCAM00385M1,soil,soil,36123,The ground surface is a dirt.,True
+NLB_565366137EDR_F0670604NCAM00257M1,soil,bedrock,34417,The ground surface is rocky.,False
+NLB_565367106EDR_F0670650NCAM00353M1,bedrock,bedrock,35019,The ground surface is rocky.,True
+NLB_565373114EDR_F0670650NCAM12753M1,soil,bedrock,34358,The ground surface is rocky.,False
+NLB_565373298EDR_F0670650NCAM12753M1,soil,bedrock,35040,The ground surface is a rocky surface.,False
+NLB_565373360EDR_F0670650NCAM12753M1,soil,bedrock,34621,The ground surface is a rocky terrain.,False
+NLB_565373417EDR_F0670650NCAM12753M1,soil,bedrock,33856,The ground surface is rocky.,False
+NLB_565810401EDR_F0670962NCAM00386M1,soil,big_rock,35542,Gravel,False
+NLB_565811345EDR_F0671016NCAM00261M1,soil,bedrock,33873,"The ground surface is a barren, rocky",False
+NLB_565811572EDR_F0671016NCAM00261M1,soil,bedrock,33413,The ground surface is rocky.,False
+NLB_565811686EDR_F0671016NCAM00261M1,soil,?,33871,The ground surface is barren.,parse_fail
+NLB_565812047EDR_F0671016NCAM00312M1,soil,bedrock,45885,The ground surface is rocky.,False
+NLB_570073321EDR_F0672884NCAM00375M1,soil,bedrock,45448,The ground surface is rocky.,False
+NLB_570073400EDR_F0672884NCAM00284M1,soil,soil,46119,The ground surface is a dirt.,True
+NLB_570073456EDR_F0672884NCAM00284M1,soil,bedrock,45306,The ground surface is rocky.,False
+NLB_570074025EDR_F0672884NCAM00285M1,bedrock,bedrock,46277,The ground surface is rocky.,True
+NLB_570074144EDR_F0672884NCAM00285M1,bedrock,bedrock,44932,The ground surface is rocky.,True
+NLB_570074258EDR_F0672884NCAM00285M1,soil,bedrock,45693,The ground surface is a rocky terrain.,False
+NLB_574061102EDR_F0681232NCAM00320M1,soil,bedrock,43831,The ground surface is rocky.,False
+NLB_574071379EDR_F0681556NCAM00379M1,bedrock,big_rock,45697,Gravel,False
+NLB_574078090EDR_F0681626NCAM00256M1,soil,bedrock,43770,The ground surface is rocky.,False
+NLB_574078155EDR_F0681626NCAM00256M1,soil,bedrock,44506,The ground surface is rocky.,False
+NLB_574078440EDR_F0681626NCAM00354M1,bedrock,big_rock,45995,Gravel,False
+NLB_574078554EDR_F0681626NCAM00354M1,soil,bedrock,45429,The ground surface is rocky.,False
+NLB_574078665EDR_F0681626NCAM07753M1,bedrock,bedrock,43166,The ground surface is rocky.,True
+NLB_574078735EDR_F0681626NCAM07753M1,bedrock,bedrock,43773,The ground surface is a rocky surface.,True
+NLB_577080310EDR_F0691768NCAM00320M1,soil,bedrock,46161,The ground surface is rocky.,False
+NLB_577089970EDR_F0691858NCAM00286M1,bedrock,bedrock,45442,The ground surface is rocky.,True
+NLB_577090033EDR_F0691858NCAM00286M1,bedrock,bedrock,44488,The ground surface is rocky.,True
+NLB_577090148EDR_F0691858NCAM00286M1,soil,bedrock,44660,"The ground surface is a barren, rocky",False
+NLB_577090437EDR_F0691858NCAM00312M1,sand,sand,43342,The ground surface is sand.,True
+NLB_577090635EDR_F0691858NCAM00287M1,sand,bedrock,45429,The ground surface is rocky.,False
+NLB_577090699EDR_F0691858NCAM00287M1,sand,bedrock,45482,The ground surface is rocky.,False
+NLB_577090763EDR_F0691858NCAM00287M1,sand,bedrock,44796,The ground surface is cracked.,False
+NLB_577095146EDR_F0691858NCAM00376M1,sand,sand,47539,The ground surface is sand.,True
+NLB_613564331EDR_F0760274NCAM00320M1,soil,bedrock,44301,The ground surface is rocky.,False
+NLB_613582793EDR_F0760556NCAM00385M1,soil,?,42955,"The ground surface is a smooth, dark",parse_fail
+NLB_613583192EDR_F0760568NCAM00375M1,soil,sand,42292,The ground surface is a desert.,False
+NLB_613583340EDR_F0760568NCAM00280M1,soil,big_rock,44445,Gravel,False
+NLB_613583373EDR_F0760568NCAM00280M1,soil,big_rock,44964,Gravel,False
+NLB_613583763EDR_F0760568NCAM00354M1,soil,?,44949,"The ground surface is a smooth, dark",parse_fail
+NLB_613583877EDR_F0760568NCAM00354M1,soil,bedrock,45938,The ground surface is rocky.,False
+NLB_613584057EDR_F0760568NCAM00281M1,soil,big_rock,44313,Gravel,False
+NLB_613584326EDR_F0760568NCAM00281M1,soil,sand,45744,The ground surface is sand.,False
+,,,,,
+SUMMARY,overall,47.96%,37765,parse_fail=18/287,
+,soil,4.55%,,,
+,bedrock,76.67%,,,
+,sand,79.71%,,,
+,big_rock,N/A,,,

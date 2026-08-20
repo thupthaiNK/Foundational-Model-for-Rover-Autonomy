@@ -1,0 +1,6 @@
+zone,ground_truth,dinov2_pred,dinov2_conf,dinov2_correct,dinov2_safe,clip_pred,clip_conf,clip_correct,clip_prob_soil,clip_prob_bedrock,clip_prob_sand,clip_prob_bigrock,cascade_pred,cascade_source,cascade_correct
+soil_zone,soil,soil,0.604,True,True,bedrock,0.308,False,0.291,0.308,0.267,0.135,soil,DINOv2,True
+bedrock_zone,bedrock,soil,0.598,False,True,big_rock,0.669,False,0.218,0.061,0.052,0.669,big_rock,CLIP,False
+sand_zone,sand,sand,0.623,True,True,big_rock,0.801,False,0.087,0.04,0.072,0.801,big_rock,CLIP,False
+rock_cluster,big_rock,uncertain,0.647,False,True,big_rock,0.987,True,0.005,0.007,0.001,0.987,big_rock,CLIP,True
+boulder_zone,big_rock,uncertain,0.762,False,True,big_rock,0.993,True,0.002,0.004,0.001,0.993,big_rock,CLIP,True

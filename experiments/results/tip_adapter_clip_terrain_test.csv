@@ -1,0 +1,5 @@
+backbone,shots,method,overall,soil,bedrock,sand,alpha,beta,vs_logreg_overall
+clip,100,tip_adapter,62.72,95.93,26.09,52.78,0.5,10.0,-13.28
+clip,100,logreg_baseline,76.00,87.80,62.00,73.60,,,0.00
+clip,1000,tip_adapter,69.34,95.12,43.48,58.33,0.5,10.0,-18.46
+clip,1000,logreg_baseline,87.80,95.90,79.30,84.70,,,0.00

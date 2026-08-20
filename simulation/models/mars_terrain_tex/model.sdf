@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- Placeholder model — this package exists only to expose its materials/
+     scripts and textures via model:// URIs to mars_terrain.world.
+     Project: Onboard Visual Foundation Models for Mars Terrain Perception and Rover Navigation -->
+<sdf version="1.6">
+  <model name="mars_terrain_tex">
+    <static>true</static>
+    <link name="link"/>
+  </model>
+</sdf>

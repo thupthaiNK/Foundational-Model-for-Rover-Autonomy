@@ -1,0 +1,4 @@
+model,backend,n_runs,mean_ms,fps_pc,ram_mb,load_s,rpi_est_ms,rpi_est_fps,note
+DINOv2+reg ViT-S/14,PyTorch CPU,20,308,3.24,132,1.6,987,1.01,Deployed model; RPi ONNX measured=570ms
+CLIP ViT-B/32,PyTorch CPU,20,295,3.39,737,47.5,943,1.06,Used in X5 cascade; RPi estimate via 3.2x factor
+SmolVLM-256M-Instruct,PyTorch CPU,0,61000,0.016,~1500,~30,195200,0.00512,Skipped — from Exp 3a Gazebo run (~61s/img observed)

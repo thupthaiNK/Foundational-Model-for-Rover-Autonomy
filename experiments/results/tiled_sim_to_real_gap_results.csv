@@ -1,0 +1,21 @@
+timestamp,images_dir,grid,image,true_label,majority_pred,any_big_rock_tile,hit_majority,hit_anyhazard
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,rock_001.jpg,big_rock,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,rock_002.jpg,big_rock,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,rock_003.jpg,big_rock,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,rock_004.jpg,big_rock,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,rock_005.jpg,big_rock,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,rock_006.jpg,big_rock,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,rock_007.jpg,big_rock,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,rock_008.jpg,big_rock,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,rock_009.jpg,big_rock,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,rock_010.jpg,big_rock,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,sand_001.jpg,sand,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,sand_002.jpg,sand,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,sand_003.jpg,sand,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,sand_004.jpg,sand,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,sand_005.jpg,sand,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,sand_006.jpg,sand,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,sand_007.jpg,sand,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,sand_008.jpg,sand,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,sand_009.jpg,sand,soil,False,False,False
+2026-07-16 00:57:27,/mnt/c/Users/DELL/Desktop/Thesis/Picture,3,sand_010.jpg,sand,soil,False,False,False

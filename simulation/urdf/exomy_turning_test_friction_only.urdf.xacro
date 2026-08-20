@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<!--
+  ExoMy Simplified URDF for Gazebo Simulation
+  Project: Onboard Visual Foundation Models for Mars Terrain Perception and Rover Navigation
+
+  Controlled Gazebo evaluation model for the 5-zone traversability experiment.
+  The geometry intentionally keeps the pre-realism-polish camera framing that
+  produced the thesis baseline result (3/5 terrain, 5/5 safety). The physical
+  ExoMy camera geometry is evaluated separately in the sim-to-real experiment.
+  This simplified model (boxes + cylinders):
+    Body: 300x200x120 mm
+    Wheel radius: ~65 mm, width: ~40 mm; wheel outer edge at +/-150 mm = 300 mm overall width
+    6-wheel drive (2 front, 2 middle, 2 rear)
+    Camera: 80 deg H-FOV, 640x480, at 315 mm height
+
+  Simplified model: boxes + cylinders — accurate enough for
+  terrain perception experiments (camera FOV, rover scale).
+-->
+<robot name="exomy" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ── Constants ─────────────────────────────────────────────── -->
+  <xacro:property name="body_length" value="0.300"/>
+  <xacro:property name="body_width"  value="0.200"/>
+  <xacro:property name="body_height" value="0.120"/>
+
+  <xacro:property name="wheel_radius" value="0.065"/>
+  <xacro:property name="wheel_width"  value="0.040"/>
+  <xacro:property name="wheel_mass"   value="0.150"/>
+
+  <!-- Wheel X positions: front / middle / rear -->
+  <xacro:property name="wheel_x_front"  value="0.110"/>
+  <xacro:property name="wheel_x_mid"    value="0.000"/>
+  <xacro:property name="wheel_x_rear"   value="-0.110"/>
+  <!-- Wheel Y: half body width + small offset -->
+  <xacro:property name="wheel_y"        value="0.130"/>
+  <!-- Ground clearance: wheels touch ground, body raised -->
+  <xacro:property name="ground_clearance" value="0.065"/>
+
+  <xacro:property name="camera_x" value="0.200"/>
+  <xacro:property name="camera_z" value="0.250"/>
+
+  <!-- ── Inertia macros ─────────────────────────────────────────── -->
+  <xacro:macro name="box_inertia" params="m x y z">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m*(y*y+z*z)/12}" ixy="0" ixz="0"
+               iyy="${m*(x*x+z*z)/12}" iyz="0"
+               izz="${m*(x*x+y*y)/12}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="cylinder_inertia" params="m r h">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0"
+               iyy="${m*(3*r*r+h*h)/12}" iyz="0"
+               izz="${m*r*r/2}"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- ── Base link (body) ──────────────────────────────────────── -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 ${ground_clearance + body_height/2}"/>
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+    <visual name="camera_mast">
+      <origin xyz="0.145 0 0.250"/>
+      <geometry>
+        <box size="0.025 0.025 0.130"/>
+      </geometry>
+      <material name="camera_mount_dark">
+        <color rgba="0.12 0.12 0.12 1.0"/>
+      </material>
+    </visual>
+    <visual name="camera_boom">
+      <origin xyz="0.175 0 0.315"/>
+      <geometry>
+        <box size="0.080 0.020 0.020"/>
+      </geometry>
+      <material name="camera_mount_dark">
+        <color rgba="0.12 0.12 0.12 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${ground_clearance + body_height/2}"/>
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}"/>
+      </geometry>
+    </collision>
+    <xacro:box_inertia m="3.0"
+      x="${body_length}" y="${body_width}" z="${body_height}"/>
+  </link>
+
+  <!-- ── Wheel macro ───────────────────────────────────────────── -->
+  <xacro:macro name="wheel" params="name x y">
+    <link name="wheel_${name}">
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="dark_grey">
+          <color rgba="0.2 0.2 0.2 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+      </collision>
+      <xacro:cylinder_inertia m="${wheel_mass}"
+        r="${wheel_radius}" h="${wheel_width}"/>
+    </link>
+
+    <joint name="joint_wheel_${name}" type="continuous">
+      <parent link="base_link"/>
+      <child  link="wheel_${name}"/>
+      <origin xyz="${x} ${y} ${wheel_radius}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <dynamics damping="0.1" friction="0.1"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- 6 wheels: FL FR ML MR RL RR -->
+  <xacro:wheel name="FL" x="${wheel_x_front}" y=" ${wheel_y}"/>
+  <xacro:wheel name="FR" x="${wheel_x_front}" y="-${wheel_y}"/>
+  <xacro:wheel name="ML" x="${wheel_x_mid}"   y=" ${wheel_y}"/>
+  <xacro:wheel name="MR" x="${wheel_x_mid}"   y="-${wheel_y}"/>
+  <xacro:wheel name="RL" x="${wheel_x_rear}"  y=" ${wheel_y}"/>
+  <xacro:wheel name="RR" x="${wheel_x_rear}"  y="-${wheel_y}"/>
+
+  <!-- ── Camera mount ──────────────────────────────────────────── -->
+  <link name="camera_link">
+    <visual>
+      <geometry><box size="0.030 0.030 0.020"/></geometry>
+      <material name="black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><box size="0.030 0.030 0.020"/></geometry>
+    </collision>
+    <xacro:box_inertia m="0.05" x="0.03" y="0.03" z="0.02"/>
+  </link>
+
+  <joint name="joint_camera" type="fixed">
+    <parent link="base_link"/>
+    <child  link="camera_link"/>
+    <origin xyz="${camera_x} 0 ${ground_clearance + camera_z}" rpy="0 0.5 0"/>
+  </joint>
+
+  <!-- Camera optical frame (ROS convention: Z-forward, X-right, Y-down) -->
+  <link name="camera_optical_frame"/>
+  <joint name="joint_camera_optical" type="fixed">
+    <parent link="camera_link"/>
+    <child  link="camera_optical_frame"/>
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+  </joint>
+
+  <!-- ── LiDAR mount (rear-top, mirrors the real RPLIDAR C1 mounting plan) ── -->
+  <link name="lidar_link">
+    <visual>
+      <geometry><cylinder radius="0.020" length="0.030"/></geometry>
+      <material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.020" length="0.030"/></geometry>
+    </collision>
+    <xacro:cylinder_inertia m="0.05" r="0.020" h="0.030"/>
+  </link>
+
+  <joint name="joint_lidar" type="fixed">
+    <parent link="base_link"/>
+    <child  link="lidar_link"/>
+    <origin xyz="-0.130 0 ${ground_clearance + body_height + 0.030}" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ── Gazebo plugins ─────────────────────────────────────────── -->
+
+  <!-- Differential drive (uses front + rear wheel pairs) -->
+  <gazebo>
+    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+      <ros><namespace>/exomy</namespace></ros>
+      <left_joint>joint_wheel_FL</left_joint>
+      <right_joint>joint_wheel_FR</right_joint>
+      <wheel_separation>${2 * wheel_y}</wheel_separation>
+      <wheel_diameter>${2 * wheel_radius}</wheel_diameter>
+      <!-- FRICTION-ONLY VARIANT: torque/acceleration left at the shared
+           file's baseline 20/1.0 on purpose, isolating the friction change
+           below as the single tested variable (the combined torque+friction
+           test made both forward driving and turning worse, likely
+           wheelspin; this variant checks friction alone). -->
+      <max_wheel_torque>20</max_wheel_torque>
+      <max_wheel_acceleration>1.0</max_wheel_acceleration>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+    </plugin>
+  </gazebo>
+
+  <!-- RGB Camera -->
+  <gazebo reference="camera_link">
+    <sensor type="camera" name="exomy_camera">
+      <update_rate>10</update_rate>
+      <camera name="exomy_cam">
+        <horizontal_fov>1.3962634</horizontal_fov>  <!-- 80 deg controlled Gazebo framing -->
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip><near>0.02</near><far>300</far></clip>
+      </camera>
+      <plugin name="camera_plugin" filename="libgazebo_ros_camera.so">
+        <ros><namespace>/exomy</namespace></ros>
+        <camera_name>camera</camera_name>
+        <frame_name>camera_optical_frame</frame_name>
+        <hack_baseline>0</hack_baseline>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- IMU sensor — for future slip detection (Exp 5b sim-to-real gap test) -->
+  <!-- Publishes /exomy/imu_raw (sensor_msgs/Imu): linear_acceleration + angular_velocity -->
+  <gazebo reference="base_link">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+        <ros>
+          <namespace>/exomy</namespace>
+          <remapping>~/out:=imu_raw</remapping>
+        </ros>
+        <initial_orientation_as_reference>false</initial_orientation_as_reference>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Simulated LiDAR (proxy for RPLIDAR C1) -->
+  <!-- Publishes /scan (sensor_msgs/LaserScan), consumed by lidar_proximity_guard_node.py. -->
+  <!-- Its default scan_topic is plain /scan, hence no namespace here. -->
+  <gazebo reference="lidar_link">
+    <sensor type="ray" name="lidar_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159265</min_angle>
+            <max_angle>3.14159265</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.05</min>
+          <max>12.0</max>
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <plugin name="lidar_plugin" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <remapping>~/out:=scan</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
+        <frame_name>lidar_link</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Wheel friction (Mars regolith: low friction) -->
+  <!-- TURNING DIAGNOSTIC ONLY (Ch4 SS4.8.23 follow-up): halved from the
+       shared exomy.urdf.xacro's 0.8/0.8 (which is not actually low despite
+       the comment above; real loose regolith is closer to 0.1 to 0.4),
+       testing whether high friction is specifically impeding skid-steer
+       rotation. -->
+  <xacro:macro name="wheel_friction" params="name">
+    <gazebo reference="wheel_${name}">
+      <mu1>0.4</mu1>
+      <mu2>0.4</mu2>
+      <kp>1e6</kp>
+      <kd>1.0</kd>
+    </gazebo>
+  </xacro:macro>
+  <xacro:wheel_friction name="FL"/>
+  <xacro:wheel_friction name="FR"/>
+  <xacro:wheel_friction name="ML"/>
+  <xacro:wheel_friction name="MR"/>
+  <xacro:wheel_friction name="RL"/>
+  <xacro:wheel_friction name="RR"/>
+
+</robot>

@@ -1,0 +1,6 @@
+shots,meta_dim,best_meta_clf,best_overall,best_soil,best_bedrock,best_sand,gap_vs_supervised,vs_ensemble_b,avg_overall,lr_overall,mlp_overall,elapsed_s
+10,16,meta_mlp_32,62.37,55.28,59.78,77.78,-34.3,,62.72,57.14,62.37,0.5
+50,16,meta_logreg_C0.01,87.8,96.75,76.09,87.5,-8.87,,87.46,87.8,85.71,0.7
+100,16,meta_logreg_C0.01,87.11,97.56,72.83,87.5,-9.56,,86.06,87.11,86.76,7.5
+500,16,meta_logreg_C0.01,93.38,97.56,92.39,87.5,-3.29,,93.73,93.38,90.94,27.4
+1000,16,meta_logreg_C0.1,93.38,97.56,93.48,86.11,-3.29,-1.05,93.38,93.38,91.64,41.6

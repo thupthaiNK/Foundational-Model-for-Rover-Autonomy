@@ -1,0 +1,9 @@
+paradigm,best_model,accuracy
+DINO self-distillation,Ensemble B,94.43
+Positional debiasing,Franca-RASA,89.55
+Contrastive,CLIP / SigLIP2,87.80
+Autoregressive,AIMv2-L,87.80
+MIM + CLIP teacher,EVA-02,81.20
+Segmentation,SAM2 Hiera-tiny,75.30
+Multi-teacher distillation,RADIO-B,65.20
+Depth estimation,Depth Anything V2-S,36.60

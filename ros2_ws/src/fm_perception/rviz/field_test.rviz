@@ -1,0 +1,204 @@
+# RViz2 layout for a real-hardware field test (2026-08-11).
+#
+# The two configs under simulation/rviz/ are Gazebo-only: they use a world fixed
+# frame, a RobotModel from /robot_description, and Gazebo's own TF tree, none of
+# which exist on the rover. This one assumes only what the rover actually
+# publishes.
+#
+# Fixed Frame is base_link. gyro_odom exists when the IMU is running, but
+# gyro_odom_publisher_node pins the transform's translation to zero -- the rover
+# has no wheel encoders -- so the odom frame carries heading and nothing else,
+# and anchoring to it would gain nothing while breaking the view whenever the
+# IMU drops off I2C.
+#
+# The LaserScan needs the static base_link -> laser transform published by
+# real_hardware_deployment.launch.py with use_sensor_tf:=true. Without it this
+# display shows nothing and reports "No transform".
+#
+# Camera Preview needs ros-humble-compressed-image-transport installed ON THE
+# LAPTOP. It is not a default ROS2 package and RViz2 cannot decode a compressed
+# stream without it.
+#
+# ONE MANUAL STEP, the first time you open this. RViz2 sizes the two image
+# docks to about 980 px and gives the 3D view whatever is left, which on a
+# 1536x864 laptop is roughly 300 px -- narrow enough to clip the right-hand end
+# of the sensor overlay text. The .rviz format cannot express dock widths; only
+# RViz2 itself writes them, from the live layout. So: drag the divider between
+# the image panels and the 3D view to the left until the 3D view is about half
+# the window, then File > Save Config (Ctrl+S). It is saved into this file and
+# never has to be done again.
+#
+# Verified in RViz2 against a replayed bag on 2026-08-11: the image displays,
+# the LaserScan and the static TF all work, and the overlay text is legible.
+#
+# Launch the rover with:
+#   ros2 launch exomy_ros2 real_hardware_deployment.launch.py \
+#        use_lidar:=true use_preview:=true use_sensor_overlay:=true \
+#        use_terrain_viz:=true
+# then on the laptop:
+#   rviz2 -d ros2_ws/src/fm_perception/rviz/field_test.rviz
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Property Tree Widget:
+      Splitter Ratio: 0.5
+    Tree Height: 640
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+  - Class: rviz_common/Time
+    Name: Time
+    SyncMode: 0
+    SyncSource: ""
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 0.5
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Name: Grid
+      Plane: XY
+      Plane Cell Count: 24
+      Reference Frame: <Fixed Frame>
+      Value: true
+
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Marker Scale: 0.4
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Value: true
+
+    # The smooth feed: where the rover is looking right now, 5 fps.
+    - Class: rviz_default_plugins/Image
+      Color Transport Hint: compressed
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Camera Preview (5 fps)
+      Normalize Range: true
+      Queue Size: 2
+      Topic:
+        Depth: 2
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /camera/preview
+      Value: true
+
+    # The slow feed: the frame each DINOv2 verdict was actually made on, with
+    # the verdict drawn onto it. Raw transport, so this one works even if
+    # compressed_image_transport is missing. Needs use_terrain_viz:=true.
+    - Class: rviz_default_plugins/Image
+      Color Transport Hint: raw
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: DINOv2 Verdict (~0.5 Hz)
+      Normalize Range: true
+      Queue Size: 2
+      Topic:
+        Depth: 2
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /terrain_viz
+      Value: true
+
+    - Class: rviz_default_plugins/LaserScan
+      Alpha: 1
+      Autocompute Intensity Bounds: true
+      Class: rviz_default_plugins/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Name: LiDAR Scan
+      Position Transformer: XYZ
+      Selectable: true
+      Size (m): 0.03
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /scan
+      Use Fixed Frame: true
+      Value: true
+
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: Sensor Overlay
+      Namespaces: {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /sensor_overlay/markers
+      Value: true
+
+    # traversability_viz_node, unchanged since it produced thesis figures.
+    # Needs use_state_viz:=true. Off here so the two text panels do not overlap
+    # by default; enable it if the policy sphere is wanted in a demo.
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: false
+      Name: Traversability Status
+      Namespaces: {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /traversability_marker
+      Value: false
+
+  Enabled: true
+  Global Options:
+    Background Color: 30; 30; 30
+    Fixed Frame: base_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Icon: false
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Measure
+      Line color: 128; 128; 0
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/TopDownOrtho
+      Name: Current View
+      Near Clip Distance: 0.01
+      Scale: 120
+      Target Frame: <Fixed Frame>
+      X: 0
+      Y: 0
+    Saved: ~
+
+Window Geometry:
+  Camera Preview (5 fps):
+    collapsed: false
+  DINOv2 Verdict (~0.5 Hz):
+    collapsed: false
+  Displays:
+    collapsed: false
+  Views:
+    collapsed: true
+  Height: 900
+  Width: 1600
+  X: 0
+  Y: 0

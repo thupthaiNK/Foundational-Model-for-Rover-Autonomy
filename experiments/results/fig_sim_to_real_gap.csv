@@ -1,0 +1,4 @@
+stage,accuracy
+AI4Mars (real Mars imagery),90.24
+Gazebo (simulation),60.0
+Real ExoMy camera (hardware),20.0

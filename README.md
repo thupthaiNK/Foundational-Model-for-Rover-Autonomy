@@ -1,62 +1,70 @@
-# Thupthai Chaiyadecha
+# Onboard Visual Foundation Models for Mars Terrain Perception and Rover Navigation
 
-MSc Astronautics and Space Engineering student at **Cranfield University**.
+MSc thesis (Astronautics and Space Engineering), Cranfield University, August 2026.
+Thupthai Chaiyadecha, supervised by Dr Saurabh Upadhyay.
 
-Thesis: **Foundational Model for Rover Autonomy** — adapting pretrained foundation and
-vision-language models for terrain understanding and traversability on a low-cost,
-Raspberry-Pi-class planetary rover, evaluated in ROS2/Gazebo simulation and on physical
-ExoMy hardware.
+This repository holds the working code behind the thesis: every experiment script,
+the ROS2 packages deployed on the rover, the Gazebo simulation assets, and the result
+CSVs and figures the report's numbers trace back to. It is described in full in the
+report's Appendix A ("Code and repository").
 
-This thesis is currently **in progress** (not yet submitted/defended). This repository
-holds a public-facing summary, representative code, and selected results. The full
-working repository (600+ files: all experiments, logs, and drafts) is private while the
-thesis is being written.
+**[Read the thesis (PDF)](docs/files/thesis.pdf)** · **[Project website](https://thupthaink.github.io/Onboard-Visual-Foundation-Models-for-Mars-Terrain-Perception-and-Rover-Navigation/)** · **[Video playlist](https://www.youtube.com/playlist?list=PLWlI8ZIzh2Es)**
 
----
+## What this thesis does
 
-## Project overview
+Mars rovers cannot be controlled in real time from Earth, so they need to judge
+terrain and drive safely on their own. This thesis tests whether pretrained visual
+foundation models — frozen, with no Mars-specific training — can do that job on
+low-cost edge hardware. Twenty-two frozen encoders across eight pretraining paradigms
+were evaluated on AI4Mars; the best result reaches 94.43% accuracy, within 2.24 points
+of a supervised baseline trained end-to-end. The chosen model, DINOv2+reg ViT-S/14,
+was deployed in a ROS2 system on a Raspberry Pi 4 and tested in Gazebo and on a real
+ESA ExoMy rover.
 
-**[Read the full project overview →](PROJECT_OVERVIEW.md)**
+## Repository structure
 
-Research question: can a cascade of frozen, pretrained foundation models (no training
-from scratch) provide reliable terrain classification and traversability-based safety on
-resource-constrained rover hardware?
+| Path | Contents |
+| --- | --- |
+| `experiments/` | Every experiment script, their output CSVs and figures under `experiments/results/`, and the MATLAB figure-generation scripts used for the report |
+| `ros2_ws/src/fm_perception/` | The perception package: CLIP, DINOv2, SmolVLM, and BLIP-2 ROS2 nodes, the traversability controller, the reactive-exploration and stuck-detection state machines |
+| `ros2_ws/src/fm_imu_fusion/` | The IMU driver, slope-fusion logic, and the LiDAR/IMU/camera traversability fusion node |
+| `ros2_ws/src/exomy_ros2/` | The ported ExoMy ROS2 hardware driver and the cmd_vel-to-RoverCommand bridge |
+| `ros2_ws/src/exomy_ros2_msgs/` | Custom ROS2 message definitions |
+| `simulation/` | Gazebo world files, the ExoMy URDF/xacro model, and launch files |
 
-- **Terrain classification**: DINOv2 ViT-S/14 (+ registers) with a lightweight linear
-  probe, 90.24% accuracy on AI4Mars, benchmarked against 21 other vision/
-  vision-language models.
-- **Reactive safety**: confidence-gated STOP/SLOW/GO policy, verified 5/5 in constructed
-  Gazebo hazard scenarios.
-- **Traversability estimation**: continuous cost score (not just discrete thresholds),
-  live-verified in simulation.
-- **Platform**: ExoMy rover (Raspberry Pi 4), ROS2 Humble, Gazebo, PyTorch/HuggingFace
-  Transformers.
+## How to run
 
-## Code samples
+```bash
+# Build the ROS2 workspace
+source /opt/ros/humble/setup.bash
+source ros2_ws/install/setup.bash
+colcon build
+source install/setup.bash
 
-[`code-samples/`](code-samples/) — a few representative ROS2 nodes from the full
-pipeline:
+# Run a standalone classification experiment
+python3 experiments/<script_name>.py
 
-| File | What it does |
-|---|---|
-| [`dinov2_terrain_node.py`](code-samples/dinov2_terrain_node.py) | Frozen DINOv2 encoder + linear probe terrain classifier |
-| [`terrain_controller_node.py`](code-samples/terrain_controller_node.py) | Reactive safety policy (confidence → STOP/SLOW/GO) |
-| [`traversability_grid.py`](code-samples/traversability_grid.py) | Builds an occupancy/cost grid from terrain classifications |
-| [`astar_planner.py`](code-samples/astar_planner.py) | Lightweight A* path planner over the traversability grid |
-| [`path_follower.py`](code-samples/path_follower.py) | Pure-pursuit path following |
+# Run the repository's unit tests
+python3 -m pytest ros2_ws/src/fm_perception/test/ ros2_ws/src/exomy_ros2/test/ ros2_ws/src/fm_imu_fusion/test/
+```
 
-## Figures
+Full setup and every reproduction command is in the thesis's Appendix A and Appendix B
+(the reproducibility map, mapping every headline number to the script that produced it).
 
-[`figures/`](figures/) — selected results (model comparison, confusion matrix, live
-hazard-avoidance behaviour in Gazebo/RViz).
+## What is not in this repository
 
----
+Real-hardware rosbag recordings and raw camera captures are not committed, since they
+are large and include images of the laboratory. Trained linear-probe weights and
+ONNX-exported encoders are regenerable from the AI4Mars dataset and the scripts above
+rather than committed directly, to keep the repository a reasonable size. Video
+recordings are on the [playlist](https://www.youtube.com/playlist?list=PLWlI8ZIzh2Es)
+instead.
 
 ## Tech stack
 
-| Area | Tools |
-|---|---|
-| Foundation models | CLIP · DINOv2 · BLIP-2 · SAM/MobileSAM · SmolVLM |
-| Robotics | ROS2 Humble · Gazebo · ExoMy |
-| ML / vision | PyTorch · HuggingFace Transformers · OpenCV |
-| Hardware | Raspberry Pi 4 (8GB) |
+Python 3.10+, ROS2 Humble, Gazebo Classic 11, PyTorch 2.5.1, HuggingFace Transformers,
+ONNX Runtime, OpenCV, scikit-learn, pandas, MATLAB R2025b (for the report's figures).
+Full dependency list in [`requirements.txt`](requirements.txt).
+
+Models evaluated: CLIP, SigLIP2, DINOv2, DINOv3, EVA-02, AIMv2, RADIO, Franca, BLIP-2,
+SmolVLM, SAM2. Deployed on: ESA ExoMy rover (Raspberry Pi 4).

@@ -1,0 +1,2 @@
+model_a,model_b,n_test,acc_a,acc_b,diff_pp,n11,n10,n01,n00,chi2,p_value,significant
+DINOv2_ViT-L_single,Ensemble_B_ViT-L+ViT-B,287,93.7282,94.4251,0.6969,265,4,6,12,0.1,0.7518,False

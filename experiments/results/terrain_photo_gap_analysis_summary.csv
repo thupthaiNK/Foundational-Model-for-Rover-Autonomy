@@ -1,0 +1,9 @@
+accuracy_pct,expected_class,folder,n,n_correct,predicted_distribution,source
+89.7,bedrock,1. AI4MAR Bedrock,29,26,,AI4Mars
+0.0,big_rock,2. Big rock,36,0,,lab_sandpit
+73.9,sand,3. Sand,23,17,,lab_sandpit
+100.0,sand,3. Sand/AI4MAR Sand,15,15,,AI4Mars
+100.0,soil,4. Soil,13,13,,campus
+100.0,soil,4. Soil/AI4MAR Soil,45,45,,AI4Mars
+,,Other,22,,soil:22,campus_exploratory
+,,Wall,17,,soil:17,campus_wall

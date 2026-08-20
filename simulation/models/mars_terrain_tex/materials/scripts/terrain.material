@@ -1,0 +1,119 @@
+// Mars terrain materials using grayscale Curiosity NAVCAM texture crops from AI4Mars.
+//
+// Design rationale:
+//   1. Textures: grayscale crops from AI4Mars Navcam images — same imaging modality
+//      as training data — to minimise the pixel-statistics domain gap between
+//      simulation and the DINOv2 probe's training distribution.
+//   2. Materials stay grayscale-neutral on purpose. Mars-colour tints look more
+//      plausible in the Gazebo viewer, but they shift the rendered camera frames
+//      away from the AI4Mars NAVCAM distribution and can change DINOv2 decisions.
+//   3. Texture scale: soil/sand use 0.35 for stable zone appearance, while
+//      bedrock uses 0.08 so the rover camera sees the crack macro-structure
+//      that separates bedrock from soil in the DINOv2 feature space. A coarser
+//      0.30 bedrock scale made the camera view look like granular regolith and
+//      regressed the 5-zone experiment from 3/5 to 2/5.
+//   4. Near-flat ambient (0.85) keeps synthetic shading minimal so the AI4Mars
+//      pixel statistics pass through the renderer with low distortion.
+//
+// Project: Onboard Visual Foundation Models for Mars Terrain Perception and Rover Navigation
+
+// ── Soil ────────────────────────────────────────────────────────────────────
+material Mars/Soil
+{
+  receive_shadows on
+  technique
+  {
+    pass
+    {
+      ambient  0.85 0.85 0.85 1.0
+      diffuse  0.45 0.45 0.45 1.0
+      specular 0.0 0.0 0.0 1.0 1
+      texture_unit
+      {
+        texture mars_soil.png
+        scale 0.35 0.35
+      }
+    }
+  }
+}
+
+// ── Bedrock ─────────────────────────────────────────────────────────────────
+material Mars/Bedrock
+{
+  receive_shadows on
+  technique
+  {
+    pass
+    {
+      ambient  0.85 0.85 0.85 1.0
+      diffuse  0.45 0.45 0.45 1.0
+      specular 0.0 0.0 0.0 1.0 1
+      texture_unit
+      {
+        texture mars_bedrock.png
+        // Scale 0.08 preserves the fracture macro-structure in the rover view.
+        scale 0.08 0.08
+      }
+    }
+  }
+}
+
+// ── Sand ────────────────────────────────────────────────────────────────────
+material Mars/Sand
+{
+  receive_shadows on
+  technique
+  {
+    pass
+    {
+      ambient  0.85 0.85 0.85 1.0
+      diffuse  0.45 0.45 0.45 1.0
+      specular 0.0 0.0 0.0 1.0 1
+      texture_unit
+      {
+        texture mars_sand.png
+        scale 0.35 0.35
+      }
+    }
+  }
+}
+
+// ── RockGround ───────────────────────────────────────────────────────────────
+material Mars/RockGround
+{
+  receive_shadows on
+  technique
+  {
+    pass
+    {
+      ambient  0.85 0.85 0.85 1.0
+      diffuse  0.45 0.45 0.45 1.0
+      specular 0.0 0.0 0.0 1.0 1
+      texture_unit
+      {
+        texture mars_big_rock.png
+        scale 0.30 0.30
+      }
+    }
+  }
+}
+
+// ── Rock — sphere and mesh rock models ───────────────────────────────────────
+material Mars/Rock
+{
+  receive_shadows on
+  technique
+  {
+    pass
+    {
+      ambient  0.85 0.85 0.85 1.0
+      diffuse  0.45 0.45 0.45 1.0
+      specular 0.0 0.0 0.0 1.0 1
+      texture_unit
+      {
+        texture mars_big_rock.png
+        scale 0.6 0.6
+      }
+    }
+  }
+}

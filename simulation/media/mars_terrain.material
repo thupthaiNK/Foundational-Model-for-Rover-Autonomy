@@ -1,0 +1,77 @@
+// Mars terrain materials — Gazebo built-in textures (confirmed working)
+// Project: Onboard Visual Foundation Models for Mars Terrain Perception and Rover Navigation
+
+material Mars/Soil
+{
+  receive_shadows on
+  technique
+  {
+    pass
+    {
+      ambient  0.50 0.33 0.22 1.0
+      diffuse  0.55 0.36 0.24 1.0
+      specular 0.05 0.04 0.03 1.0 8
+      texture_unit { texture dirt_diffusespecular.png; scale 0.15 0.15 }
+    }
+  }
+}
+
+material Mars/Bedrock
+{
+  receive_shadows on
+  technique
+  {
+    pass
+    {
+      ambient  0.88 0.87 0.85 1.0
+      diffuse  0.92 0.91 0.89 1.0
+      specular 0.25 0.25 0.25 1.0 24
+      texture_unit { texture granite.jpg; scale 0.10 0.10 }
+    }
+  }
+}
+
+material Mars/Sand
+{
+  receive_shadows on
+  technique
+  {
+    pass
+    {
+      ambient  0.90 0.86 0.60 1.0
+      diffuse  0.95 0.90 0.65 1.0
+      specular 0.20 0.18 0.08 1.0 6
+      texture_unit { texture terrain_detail.jpg; scale 0.20 0.20 }
+    }
+  }
+}
+
+material Mars/RockGround
+{
+  receive_shadows on
+  technique
+  {
+    pass
+    {
+      ambient  0.25 0.22 0.19 1.0
+      diffuse  0.30 0.26 0.22 1.0
+      specular 0.08 0.08 0.08 1.0 8
+      texture_unit { texture granite2.jpg; scale 0.18 0.18 }
+    }
+  }
+}
+
+material Mars/Rock
+{
+  receive_shadows on
+  technique
+  {
+    pass
+    {
+      ambient  0.60 0.56 0.52 1.0
+      diffuse  0.65 0.61 0.57 1.0
+      specular 0.18 0.17 0.15 1.0 20
+      texture_unit { texture granite.jpg; scale 0.25 0.25 }
+    }
+  }
+}

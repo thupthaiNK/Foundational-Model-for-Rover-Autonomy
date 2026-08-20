@@ -1,0 +1,55 @@
+model,label,shot,seed,overall,soil,bedrock,sand,big_rock
+dinov2_vits,DINOv2 ViT-S/14  (384-d),100,42,79.7909,95.935,58.6957,79.1667,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),100,123,80.1394,88.6179,67.3913,81.9444,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),100,456,78.0488,84.5528,65.2174,83.3333,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),100,789,81.5331,96.748,68.4783,72.2222,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),100,1337,81.5331,98.374,60.8696,79.1667,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),100,mean±std,80.21±1.29,92.85±5.33,64.13±3.77,79.17±3.83,N/A
+dinov2_vits,DINOv2 ViT-S/14  (384-d),500,42,88.8502,96.748,81.5217,84.7222,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),500,123,88.1533,97.561,77.1739,86.1111,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),500,456,87.8049,95.935,81.5217,81.9444,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),500,789,87.108,96.748,77.1739,83.3333,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),500,1337,89.1986,98.374,80.4348,84.7222,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),500,mean±std,88.22±0.74,97.07±0.83,79.57±1.99,84.17±1.42,N/A
+dinov2_vits,DINOv2 ViT-S/14  (384-d),1000,42,89.8955,97.561,84.7826,83.3333,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),1000,123,89.8955,97.561,84.7826,83.3333,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),1000,456,89.8955,97.561,84.7826,83.3333,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),1000,789,89.8955,97.561,84.7826,83.3333,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),1000,1337,89.8955,97.561,84.7826,83.3333,nan
+dinov2_vits,DINOv2 ViT-S/14  (384-d),1000,mean±std,89.90±0.00,97.56±0.00,84.78±0.00,83.33±0.00,N/A
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),100,42,83.2753,94.3089,68.4783,83.3333,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),100,123,83.9721,93.4959,71.7391,83.3333,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),100,456,83.6237,90.2439,77.1739,80.5556,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),100,789,83.6237,91.0569,76.087,80.5556,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),100,1337,83.6237,96.748,67.3913,81.9444,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),100,mean±std,83.62±0.22,93.17±2.33,72.17±3.93,81.94±1.24,N/A
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),500,42,91.9861,95.935,90.2174,87.5,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),500,123,91.6376,96.748,88.0435,87.5,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),500,456,93.0314,97.561,92.3913,86.1111,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),500,789,91.6376,96.748,89.1304,86.1111,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),500,1337,92.3345,95.935,91.3043,87.5,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),500,mean±std,92.13±0.52,96.59±0.61,90.22±1.54,86.94±0.68,N/A
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),1000,42,93.7282,97.561,92.3913,88.8889,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),1000,123,93.7282,97.561,92.3913,88.8889,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),1000,456,93.7282,97.561,92.3913,88.8889,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),1000,789,93.7282,97.561,92.3913,88.8889,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),1000,1337,93.7282,97.561,92.3913,88.8889,nan
+dinov2_vitl,DINOv2 ViT-L/14 (1024-d),1000,mean±std,93.73±0.00,97.56±0.00,92.39±0.00,88.89±0.00,N/A
+ensemble_b,Ensemble B ViT-L+B (1792-d),100,42,84.669,95.935,69.5652,84.7222,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),100,123,86.0627,95.122,73.913,86.1111,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),100,456,82.9268,88.6179,75.0,83.3333,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),100,789,83.9721,94.3089,71.7391,81.9444,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),100,1337,85.3659,96.748,70.6522,84.7222,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),100,mean±std,84.60±1.09,94.15±2.88,72.17±2.02,84.17±1.42,N/A
+ensemble_b,Ensemble B ViT-L+B (1792-d),500,42,91.9861,95.122,89.1304,90.2778,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),500,123,92.3345,98.374,85.8696,90.2778,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),500,456,93.0314,99.187,89.1304,87.5,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),500,789,92.6829,98.374,88.0435,88.8889,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),500,1337,92.3345,97.561,86.9565,90.2778,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),500,mean±std,92.47±0.36,97.72±1.40,87.83±1.27,89.44±1.11,N/A
+ensemble_b,Ensemble B ViT-L+B (1792-d),1000,42,94.4251,100.0,90.2174,90.2778,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),1000,123,94.4251,100.0,90.2174,90.2778,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),1000,456,94.4251,100.0,90.2174,90.2778,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),1000,789,94.4251,100.0,90.2174,90.2778,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),1000,1337,94.4251,100.0,90.2174,90.2778,nan
+ensemble_b,Ensemble B ViT-L+B (1792-d),1000,mean±std,94.43±0.00,100.00±0.00,90.22±0.00,90.28±0.00,N/A

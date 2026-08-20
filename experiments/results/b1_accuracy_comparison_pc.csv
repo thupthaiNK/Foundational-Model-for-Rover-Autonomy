@@ -1,0 +1,3 @@
+model,precision,size_mb,acc_pc_pct,note
+DINOv2+reg ViT-S FP32 ONNX,FP32,88.4,94.0,baseline deployment model
+DINOv2+reg ViT-S INT8 ONNX,INT8,24.9,93.5,"dynamic quantization (weights INT8, activations FP32)"

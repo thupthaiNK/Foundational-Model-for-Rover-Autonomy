@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>exomy_ros2</name>
+  <version>1.0.0</version>
+  <description>
+    ExoMy rover control nodes — ROS2 Humble port of the original ROS1 ExoMy_Software.
+    Provides motor control, rover kinematics, and rover command nodes for the ExoMy 6-wheel rover.
+    Original source: github.com/esa-prl/ExoMy_Software (rospy → rclpy migration for this thesis).
+  </description>
+  <maintainer email="thupthaich@gmail.com">thupthaiNK</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>exomy_ros2_msgs</depend>
+
+  <!-- Cross-package runtime deps for real_hardware_deployment.launch.py -->
+  <exec_depend>fm_perception</exec_depend>
+  <exec_depend>fm_imu_fusion</exec_depend>
+  <exec_depend>v4l2_camera</exec_depend>
+  <!-- sllidar_ros2: only needed when use_lidar:=true; not installed/verified
+       on this dev machine yet (no RPLIDAR C1 hardware), see launch file docstring -->
+  <exec_depend>sllidar_ros2</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

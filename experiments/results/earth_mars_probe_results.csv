@@ -1,0 +1,15 @@
+metric,value
+mars_only@mars,97.19
+earth_only@earth,96.68
+earth_only@mars,13.45
+mars_only@earth,35.74
+joint@mars,96.39
+joint@earth,95.31
+joint_cost_mars,0.80
+joint_cost_earth,1.37
+chance,33.33
+n_train_mars,3002
+n_train_earth,2005
+n_test_mars,498
+n_test_earth,512
+verdict,HONEST-NEGATIVE — frozen features are planet-specific

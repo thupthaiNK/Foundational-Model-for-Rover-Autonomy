@@ -1,0 +1,6 @@
+shots,overall,gap_vs_supervised,soil,bedrock,sand,big_rock,single_vitl_overall,ensemble_b_overall,delta_vs_single,delta_vs_ensemble,feat_dim
+10,63.76,-32.91,47.97,72.83,79.17,N/A,65.20,N/A,-1.44,N/A,4096
+50,80.14,-16.53,92.68,59.78,84.72,N/A,80.50,N/A,-0.36,N/A,4096
+100,84.67,-12.00,96.75,68.48,84.72,N/A,84.00,N/A,+0.67,N/A,4096
+500,92.33,-4.34,97.56,89.13,87.50,N/A,93.70,N/A,-1.37,N/A,4096
+1000,93.03,-3.64,97.56,90.22,88.89,N/A,93.73,94.43,-0.70,-1.40,4096

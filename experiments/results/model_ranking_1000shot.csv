@@ -1,0 +1,23 @@
+rank,model,paradigm,overall,bedrock
+1,Ensemble B (DINOv2 L+B),DINO ensemble,94.43,91.32
+2,DINOv2 ViT-L/14,DINO,93.73,90.94
+3,Prob. stacking (4-model),Ensemble,93.38,93.50
+4,DINOv3 ViT-L/16,DINO,92.33,89.13
+5,DINOv2+reg ViT-B,DINO,91.99,88.04
+6,DINOv2 ViT-B/14,DINO,91.30,87.04
+7,DINOv3-SAT ViT-L,DINO satellite,90.94,93.50
+8,DINOv3 ViT-B/16,DINO,90.60,83.70
+9,DINOv2+reg ViT-S (deployed),DINO,90.24,84.78
+10,DINOv3 ViT-S/16,DINO,90.20,83.70
+11,DINOv2 ViT-S/14,DINO,89.90,84.78
+12,Franca-RASA,Positional debiasing,89.55,89.13
+13,Franca-CLS+RASA,Positional debiasing,89.55,88.04
+14,AIMv2-L,Autoregressive,87.80,77.17
+15,CLIP ViT-B/32,Contrastive,87.80,79.30
+16,DINOv3 ConvNeXt-Tiny,DINO CNN,87.80,80.40
+17,SigLIP2-B/16,Contrastive sigmoid,86.10,80.40
+18,Franca-CLS,Matryoshka backbone,84.67,80.43
+19,EVA-02 ViT-B/14,MIM + CLIP teacher,81.20,64.10
+20,SAM2 Hiera-tiny,Segmentation,75.30,73.90
+21,RADIO-B,Multi-teacher,65.20,67.40
+22,Depth Anything V2-S,Depth estimation,36.60,9.80

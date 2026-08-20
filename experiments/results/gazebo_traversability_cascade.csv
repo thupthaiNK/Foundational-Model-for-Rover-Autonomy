@@ -1,0 +1,6 @@
+zone,ground_truth,clip_pred,clip_conf,terrain_correct,consistent,n_readings,all_clip_labels,cascade_trav,expected_cascade_trav,cascade_trav_correct,expected_speed_ms,actual_speed_ms,speed_correct,description
+soil_zone,soil,sand,0.815,False,True,8,"sand,sand,sand,sand,sand,sand,sand,sand",safe,safe,True,0.1,0.05,False,"Soil zone Q2 — CLIP→soil, cascade→safe, ctrl→0.10m/s"
+bedrock_zone,bedrock,soil,0.49,False,False,8,"soil,unknown,soil,unknown,soil,unknown,soil,soil",safe,caution,False,0.03,0.1,False,"Bedrock zone Q1 — CLIP→bedrock, cascade→caution, ctrl→0.03m/s"
+sand_zone,sand,sand,0.402,True,True,8,"sand,sand,sand,sand,sand,sand,sand,sand",safe,safe,True,0.05,0.05,True,Sand zone Q3 — cascade says safe (vs DINOv2 CAUTION for sand)
+rock_cluster,big_rock,big_rock,0.866,True,False,8,"soil,big_rock,big_rock,big_rock,big_rock,big_rock,big_rock,big_rock",hazard,hazard,True,0.0,0.0,True,"Rock cluster Q4 centre — cascade→hazard, ctrl→STOP"
+boulder_zone,big_rock,big_rock,0.874,True,True,8,"big_rock,big_rock,big_rock,big_rock,big_rock,big_rock,big_rock,big_rock",hazard,hazard,True,0.0,0.0,True,"Boulder zone Q4 south — cascade→hazard, ctrl→STOP"

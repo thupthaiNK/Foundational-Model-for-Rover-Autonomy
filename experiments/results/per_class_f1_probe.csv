@@ -1,0 +1,15 @@
+probe,test_set,class,precision,recall,f1,support
+Probe A (AI4Mars-only),MB_mapped,soil,0.7202,0.7068,0.7134,590
+Probe A (AI4Mars-only),AI4Mars,soil,0.9291,0.9593,0.944,123
+Probe A (AI4Mars-only),MB_mapped,bedrock,0.0298,0.122,0.0478,41
+Probe A (AI4Mars-only),AI4Mars,bedrock,0.8764,0.8478,0.8619,92
+Probe A (AI4Mars-only),MB_mapped,sand,0.3016,0.118,0.1696,161
+Probe A (AI4Mars-only),AI4Mars,sand,0.8873,0.875,0.8811,72
+Probe A (AI4Mars-only),MB_mapped,big_rock,0.0,0.0,0.0,18
+Probe C (Joint),MB_mapped,soil,0.9477,0.9525,0.9501,590
+Probe C (Joint),AI4Mars,soil,0.8906,0.9268,0.9084,123
+Probe C (Joint),MB_mapped,bedrock,0.7018,0.9756,0.8163,41
+Probe C (Joint),AI4Mars,bedrock,0.8452,0.7717,0.8068,92
+Probe C (Joint),MB_mapped,sand,0.8924,0.8758,0.884,161
+Probe C (Joint),AI4Mars,sand,0.863,0.875,0.869,72
+Probe C (Joint),MB_mapped,big_rock,1.0,0.1111,0.2,18

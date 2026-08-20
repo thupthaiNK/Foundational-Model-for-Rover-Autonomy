@@ -1,0 +1,10 @@
+t_s,selection,goal_x,goal_y,goal_zone,bedrock_candidates,selected_bedrock
+6.17676305770874,1,0.75,5.65,bedrock_zone,23,True
+17.236132621765137,2,0.65,6.15,bedrock_zone,20,True
+58.365994930267334,3,0.15,6.45,bedrock_zone,54,True
+76.9885561466217,4,0.55,6.05,bedrock_zone,45,True
+105.70390319824219,5,-0.05,6.15,soil_zone,47,True
+143.08369731903076,6,0.45,6.15,bedrock_zone,43,True
+193.4374577999115,7,-0.25,5.75,soil_zone,49,True
+266.6747422218323,8,-0.75,5.45,soil_zone,51,True
+287.4872064590454,9,0.25,6.35,bedrock_zone,54,True

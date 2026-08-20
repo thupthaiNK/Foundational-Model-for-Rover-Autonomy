@@ -1,0 +1,4 @@
+shots,depth_only_overall,depth_only_soil,depth_only_bedrock,depth_only_sand,depth_only_big_rock,fusion_overall,fusion_soil,fusion_bedrock,fusion_sand,fusion_big_rock,dinov3_only_overall,dinov3_only_bedrock,delta_overall_vs_dinov3_depth_only,delta_overall_vs_dinov3_fusion,delta_bedrock_vs_dinov3_fusion,ms_per_img_depth
+10,19.51,4.07,18.48,47.22,N/A,58.19,50.41,67.39,59.72,N/A,58.50,65.20,-38.99,-0.31,+2.19,1137.1
+100,30.31,53.66,7.61,19.44,N/A,77.35,95.12,53.26,77.78,N/A,80.50,60.90,-50.19,-3.15,-7.64,1137.1
+1000,36.59,59.35,9.78,31.94,N/A,89.90,98.37,81.52,86.11,N/A,90.20,83.70,-53.61,-0.30,-2.18,1137.1

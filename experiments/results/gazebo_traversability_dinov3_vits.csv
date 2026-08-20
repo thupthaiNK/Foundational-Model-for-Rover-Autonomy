@@ -1,0 +1,6 @@
+model,zone,ground_truth,model_pred,model_conf,terrain_correct,consistent,n_readings,expected_trav,pred_trav,trav_correct,expected_speed_ms,actual_speed_ms,speed_correct,description,all_labels
+dinov3_vits,soil_zone,soil,sand,0.522,False,True,8,SAFE,CAUTION,False,0.1,0.050,False,Open regolith far from bedrock/sand — safe to drive,"sand,sand,sand,sand,sand,sand,sand,sand"
+dinov3_vits,bedrock_zone,bedrock,bedrock,0.760,True,True,8,HAZARD,HAZARD,True,0.03,0.030,True,"Centre of bedrock slab (world pose 4,0, size 4x6)","bedrock,bedrock,bedrock,bedrock,bedrock,bedrock,bedrock,bedrock"
+dinov3_vits,sand_zone,sand,sand,0.738,True,True,8,CAUTION,CAUTION,True,0.05,0.050,True,"Centre of sand zone (world pose -4,0, size 4x6)","sand,sand,sand,sand,sand,sand,sand,sand"
+dinov3_vits,rock_cluster,big_rock,sand,0.542,False,True,8,STOP,CAUTION,False,0.0,0.050,False,1.0m behind rock_foreground: rocks fill 25% FOV,"sand,sand,sand,sand,sand,sand,sand,sand"
+dinov3_vits,boulder_zone,big_rock,bedrock,0.440,False,True,8,STOP,HAZARD,False,0.0,0.030,False,1.3m behind boulder_1: boulder fills 26% FOV,"bedrock,bedrock,bedrock,bedrock,bedrock,bedrock,bedrock,bedrock"

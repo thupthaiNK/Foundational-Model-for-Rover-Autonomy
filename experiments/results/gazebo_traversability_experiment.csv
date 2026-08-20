@@ -1,0 +1,6 @@
+zone,ground_truth,expected_trav,clip_pred,clip_conf,clip_correct,clip_consistent,n_clip_readings,trav_pred,trav_correct,smolvlm_pred,description
+soil_zone,soil,safe,big_rock,0.690,False,True,20,hazard,False,N/A,"Open regolith at (0,6) — far from rock zones"
+bedrock_zone,bedrock,caution,bedrock,0.603,True,True,20,caution,True,N/A,"Centre of bedrock slab at (4.5,0)"
+sand_zone,sand,safe,big_rock,0.871,False,True,20,hazard,False,N/A,"Centre of sand zone at (-4.5,0)"
+rock_cluster,big_rock,hazard,big_rock,0.552,True,True,20,hazard,True,N/A,"Near rock_2 (2,-1.5) and boulder_1 (0.5,-2.5)"
+boulder_zone,big_rock,hazard,sand,0.436,False,False,20,safe,False,N/A,"At boulder_1 (0.5,-2.5) — large rock"

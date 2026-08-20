@@ -1,0 +1,4 @@
+timestamp,images_dir,class,n_images,correct,accuracy_pct,avg_conf,ai4mars_baseline_pct,gap_pp
+2026-07-16 00:46:15,/mnt/c/Users/DELL/Desktop/Thesis/Picture,big_rock,10,0,0.0,0.4982,,
+2026-07-16 00:46:15,/mnt/c/Users/DELL/Desktop/Thesis/Picture,sand,10,5,50.0,0.5333,,
+2026-07-16 00:46:15,/mnt/c/Users/DELL/Desktop/Thesis/Picture,OVERALL,20,5,25.0,,90.24,-65.24

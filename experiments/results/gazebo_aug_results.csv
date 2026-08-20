@@ -1,0 +1,6 @@
+config,overall_acc,soil_acc,bedrock_acc,sand_acc,bigrock_acc,bigrock_conf,n_bigrock_train,n_gazebo_frames,n_aug_per_frame,gazebo_terrain_5zone,gazebo_safety_5zone,gazebo_rock_pred_correct,notes
+A (baseline),90.24,95.93,84.78,87.5,nan,nan,108,18,40,3,5,2/2 uncertain,authoritative Gazebo result (2026-06-21)
+B (AI4M+Gz),90.24,95.93,84.78,87.5,nan,nan,846,18,40,2,2,2/2 big_rock,NEGATIVE RESULT: all zones→big_rock (2026-06-24); cosine sim soil/gz_rock=0.60 bedrock/gz_rock=0.69 sand/gz_rock=0.66 — feature manifold overlap
+C (Gz only),90.24,95.93,84.78,87.5,nan,nan,738,18,40,,,,"self-predict only; Gazebo live not run (B already failed)"
+D (balanced),85.02,95.93,71.74,83.33,nan,nan,108,18,40,,,,"self-predict only; balanced weights alone insufficient (622/738 still→sand)"
+E (B+bal),90.24,95.93,84.78,87.5,nan,nan,846,18,40,,,,"self-predict only; not tested live"

@@ -1,0 +1,6 @@
+zone,ground_truth,smolvlm_pred,terrain_correct,consistent,n_readings,all_terrain_labels,expected_trav,pred_trav,trav_correct,all_trav_labels,expected_speed_ms,actual_speed_ms,speed_correct,inference_note,description
+soil_zone,soil,sand,False,True,3,"sand,sand,sand",safe,caution,False,"caution,caution,caution",N/A,N/A,N/A,"~55s/img on CPU, 3 readings in 300s",Soil zone Q2 — expect safe traversal
+bedrock_zone,bedrock,sand,False,True,3,"sand,sand,sand",caution,hazard,False,"hazard,hazard,hazard",N/A,N/A,N/A,"~55s/img on CPU, 3 readings in 300s",Bedrock zone Q1 — expect caution
+sand_zone,sand,sand,True,True,3,"sand,sand,sand",safe,caution,False,"hazard,caution,caution",N/A,N/A,N/A,"~55s/img on CPU, 3 readings in 300s",Sand zone Q3 — cascade says safe (vs DINOv2 CAUTION)
+rock_cluster,big_rock,sand,False,True,3,"sand,sand,sand",hazard,hazard,True,"caution,hazard,hazard",N/A,N/A,N/A,"~55s/img on CPU, 3 readings in 300s",Rock cluster Q4 centre — expect hazard
+boulder_zone,big_rock,sand,False,True,2,"sand,sand",hazard,hazard,True,"hazard,hazard",N/A,N/A,N/A,"~55s/img on CPU, 2 readings in 300s",Boulder zone Q4 south — expect hazard

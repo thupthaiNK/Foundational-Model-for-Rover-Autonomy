@@ -1,0 +1,4 @@
+probe,n_train,a4m_acc,mb_mapped_acc,mb_full_acc,gap_mapped_pp
+A4M-only,3108,90.24,54.44,27.67,35.8
+MB-only,3654,39.72,94.2,47.87,-54.48
+Joint,6762,86.41,91.98,46.74,-5.56

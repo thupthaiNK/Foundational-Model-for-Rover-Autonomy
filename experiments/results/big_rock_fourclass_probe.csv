@@ -1,0 +1,4 @@
+probe,n_train,overall,acc_soil,acc_bedrock,acc_sand,acc_big rock,ntrain_soil,ntrain_bedrock,ntrain_sand,ntrain_big rock
+"A. 3-class, balanced (deployed label set)",234,78.89,93.33,66.67,76.67,,78,78,78,
+"B. 4-class, balanced",312,70.0,93.33,43.33,73.33,70.0,78,78,78,78
+"C. 4-class, all available (imbalanced)",888,61.67,90.0,73.33,83.33,0.0,270,270,270,78

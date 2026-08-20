@@ -1,0 +1,6 @@
+zone,ground_truth,pred,confidence,terrain_correct,consistent,n_readings,all_labels,expected_policy,expected_speed_ms,actual_speed_ms,speed_correct,mean_latency_ms,description
+soil_zone,soil,soil,0.578,True,True,8,"soil,soil,soil,soil,soil,soil,soil,soil",SAFE,0.1,0.1,True,173.0,Soil zone Q2
+bedrock_zone,bedrock,bedrock,0.486,True,True,8,"bedrock,bedrock,bedrock,bedrock,bedrock,bedrock,bedrock,bedrock",HAZARD,0.03,0.03,True,188.6,Bedrock zone Q1
+sand_zone,sand,uncertain,0.603,False,True,8,"uncertain,uncertain,uncertain,uncertain,uncertain,uncertain,uncertain,uncertain",CAUTION,0.05,0.0,False,190.4,Sand zone Q3
+rock_cluster,big_rock,uncertain,0.623,False,True,8,"uncertain,uncertain,uncertain,uncertain,uncertain,uncertain,uncertain,uncertain",STOP,0.0,0.0,True,213.6,Rock cluster Q4 centre
+boulder_zone,big_rock,sand,0.732,False,True,8,"sand,sand,sand,sand,sand,sand,sand,sand",STOP,0.0,0.05,False,197.3,Boulder zone Q4 south

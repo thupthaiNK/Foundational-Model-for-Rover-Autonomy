@@ -1,0 +1,3 @@
+model,precision,size_mb,avg_ms,p50_ms,p95_ms,fps,avg_ram_mb,n_measured,hostname,platform,cpu_cores,ram_gb
+dinov2_reg_small_encoder.onnx,FP32,88.4,558.5,558.4,560.1,1.79,219.8,20,exomy,Linux-6.18.34+rpt-rpi-v8-aarch64-with-glibc2.41,4,8.2
+dinov2_reg_small_encoder_int8.onnx,INT8,24.9,386.0,385.6,388.1,2.591,162.9,20,exomy,Linux-6.18.34+rpt-rpi-v8-aarch64-with-glibc2.41,4,8.2

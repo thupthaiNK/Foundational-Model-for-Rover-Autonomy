@@ -1,0 +1,472 @@
+<?xml version="1.0"?>
+<!--
+  Mars terrain world for ExoMy rover Gazebo simulation.
+  Project: Onboard Visual Foundation Models for Mars Terrain Perception and Rover Navigation
+
+  Layout (2026-06-23 quadrant redesign):
+    Four AI4Mars terrain zones, each filling one quadrant of the 30x24 m base:
+
+      Q2 (x<0, y>0): soil_zone    15x12 m — spawn (-7.5,  6.0, 0.15)
+      Q1 (x>0, y>0): bedrock_zone 15x12 m — spawn ( 7.5,  6.0, 0.15)
+      Q3 (x<0, y<0): sand_zone    15x12 m — spawn (-7.5, -6.0, 0.15)
+      Q4 (x>0, y<0): rock_ground  15x12 m — spawns (2.0,-4.0,0.15) and (2.0,-8.0,0.15)
+
+  Rock field (Fix C): collision uses <sphere> (fast analytical) not <mesh>.
+    Visual stays as mars_rock.dae mesh — only collision geometry is simplified.
+    sphere radius = scale * 0.65  (fits within mesh footprint)
+    pose_z = -0.15 * 1.5672 * scale  (15% burial, Allan et al. #48)
+
+  This reduces Gazebo collision init time from ~60s (21 mesh) to ~5s (21 spheres).
+
+  MIXED-OBSTACLE VARIANT (2026-08-19, sensor-validation sanity check):
+    Forked from mars_terrain.world (NOT edited in place — that file backs
+    already-written-up thesis results and reactive_exploration_test.launch.py
+    explicitly says "must not change behavior"). Two changes from the base
+    file:
+    1) 3 rocks added to each of soil_zone/bedrock_zone/sand_zone (originally
+       obstacle-free — only the Q4 rock quadrant had anything to avoid), so
+       reactive_explorer_node's real FSM has a reason to change heading in
+       every zone, not just the rock quadrant. New rocks use mesh scale 0.6
+       (bigger than the original field's max 0.45), collision radius
+       0.85*0.6=0.51 (bumped from the field's original 0.65 factor after
+       run 7's video showed the rover's camera visually clipping into a
+       rock face it had already stopped clear of by ground-truth odom --
+       measured the actual mesh: model.dae's unscaled vertex bounds are
+       x=[-0.865,0.865] y=[-0.777,0.777], so 0.65*scale was always smaller
+       than the true footprint by design ["fits within mesh footprint" --
+       fine for a background rock nothing ever touches, wrong for one the
+       FSM is meant to stop right at]; 0.85*scale=0.519 matches the real
+       x half-extent almost exactly). pose_z=-0.15*1.5672*0.6=-0.141,
+       collision top=0.51-0.141=0.369m — clears the 0.215m real LiDAR
+       mount height with more margin than before (was 0.249m).
+    2) ZONE HEIGHTS UNIFIED (added after 2 runs hit the same bug twice):
+       soil/sand were 0.006m thick, bedrock 0.010m, rock_ground 0.004m --
+       inherited unchanged from mars_terrain.world, where it never
+       mattered because the rover only ever drove within one zone per
+       test. Here it crosses zone seams, and every seam was a real
+       physical step up to 6mm tall. Run 4 hit this at the exact (0,0)
+       corner (LiDAR read 0.18m BLOCKED before even turning); moving
+       spawn 0.2m off the corner masked that one case, but run 6 (a full
+       clean capture, verified against the live shutdown log with zero
+       data loss) showed the rover correctly sweep, choose a heading, and
+       drive toward rock_ahead_W -- then LiDAR read a constant 0.101m
+       "obstacle" for 3+ seconds at odom (-0.02, 0.19), 2m short of that
+       rock, exactly astride the bedrock/soil x=0 seam. All 4 zone planes
+       are now the same 0.006m thickness at the same 0.003m pose-z, so no
+       seam anywhere in the map has a physical step.
+    3) Map shrunk to 5x5 m per quadrant (author request — run must finish
+       inside 10 min): every x/y pose and every zone/ground-plane footprint
+       scaled anisotropically (x by 5/15, y by 5/12) from this 15x12 m/
+       quadrant base file; z, roll/pitch/yaw, and rock physical size (mesh
+       <scale>, collision <radius>) untouched. Ground plane -> 10x10 m.
+       The Q4 rock quadrant's original 21 rocks cannot fit a 5x5 m box
+       without collision overlap (tested at 3x3 m, found 6 overlapping
+       pairs) so it keeps only the 7 largest (boulder_1-3, rock_1/3/7/10),
+       manually repositioned with 15cm+ edge clearance between every pair.
+       Purpose: check DINOv2/IMU/LiDAR sensor output against Gazebo ground
+       truth while the FSM autonomously drives.
+-->
+<sdf version="1.6">
+<world name="mars_terrain_mixed_obstacles">
+
+  <physics type="ode">
+    <real_time_update_rate>1000</real_time_update_rate>
+    <max_step_size>0.001</max_step_size>
+    <real_time_factor>1</real_time_factor>
+  </physics>
+
+  <scene>
+    <ambient>0.40 0.39 0.38 1</ambient>
+    <background>0.55 0.38 0.28 1</background>
+    <shadows>true</shadows>
+    <grid>false</grid>
+  </scene>
+
+  <light type="directional" name="sun">
+    <cast_shadows>true</cast_shadows>
+    <pose>0.0 0.0 100 0 0.3 0.8</pose>
+    <diffuse>1.0 0.90 0.80 1</diffuse>
+    <specular>0.4 0.4 0.4 1</specular>
+    <direction>-0.5 0.2 -0.9</direction>
+  </light>
+
+  <light type="directional" name="fill">
+    <cast_shadows>false</cast_shadows>
+    <pose>0.0 0.0 50 0 0 0</pose>
+    <diffuse>0.3 0.28 0.25 1</diffuse>
+    <specular>0.0 0.0 0.0 1</specular>
+    <direction>0.5 -0.2 -0.8</direction>
+  </light>
+
+  <!-- Ground plane 16x16 m: 10x10 m of tiled terrain zones + 3m margin per
+       side (added 2026-08-19). pose z=0.006 (2026-08-19 v2, same bug found
+       a 3rd time): this plane had no pose at all, defaulting to z=0, while
+       the zone boxes on top of it sit at top-surface z=0.006 -- a 6mm seam
+       right at the zone/margin boundary (|x| or |y| = 5.0). Run 9 drove to
+       (2.31, 5.02), right on that seam, and LiDAR read a constant 0.073-
+       0.1m "obstacle" there for 2+ seconds -- nothing was actually 1.2m+
+       away from every real rock. Matching this plane's z to the zone tops
+       removes the last seam in the map. -->
+  <model name="benchmark_base">
+    <static>true</static>
+    <pose>0 0 0.006 0 0 0</pose>
+    <link name="link">
+      <collision name="collision">
+        <geometry><plane><normal>0 0 1</normal><size>16.0 16.0</size></plane></geometry>
+        <surface><friction><ode><mu>0.9</mu><mu2>0.9</mu2></ode></friction></surface>
+      </collision>
+      <visual name="visual">
+        <geometry><plane><normal>0 0 1</normal><size>16.0 16.0</size></plane></geometry>
+        <material><ambient>0.42 0.39 0.36 1</ambient><diffuse>0.42 0.39 0.36 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+
+  <!-- =================================================================
+       TERRAIN ZONES — four quadrants, no gap, no overlap
+  ================================================================= -->
+
+  <!-- Q2 soil (x<0,y>0): 15x12 m centred at (-7.5, 6.0) — spawn (-7.5,6.0) -->
+  <model name="soil_zone">
+    <static>true</static>
+    <pose>-2.5 2.5 0.003 0 0 0</pose>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>5.0 5.0 0.006</size></box></geometry>
+        <surface><friction><ode><mu>0.9</mu><mu2>0.9</mu2></ode></friction></surface>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>5.0 5.0 0.006</size></box></geometry>
+        <material><script>
+          <uri>model://mars_terrain_tex/materials/scripts</uri>
+          <uri>model://mars_terrain_tex/materials/textures</uri>
+          <name>Mars/Soil</name>
+        </script></material>
+      </visual>
+    </link>
+  </model>
+
+  <!-- Q1 bedrock (x>0,y>0): 15x12 m centred at (7.5, 6.0) — spawn (7.5,6.0) -->
+  <model name="bedrock_zone">
+    <static>true</static>
+    <pose>2.5 2.5 0.003 0 0 0</pose>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>5.0 5.0 0.006</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>5.0 5.0 0.006</size></box></geometry>
+        <material><script>
+          <uri>model://mars_terrain_tex/materials/scripts</uri>
+          <uri>model://mars_terrain_tex/materials/textures</uri>
+          <name>Mars/Bedrock</name>
+        </script></material>
+      </visual>
+    </link>
+  </model>
+
+  <!-- Q3 sand (x<0,y<0): 15x12 m centred at (-7.5,-6.0) — spawn (-7.5,-6.0) -->
+  <model name="sand_zone">
+    <static>true</static>
+    <pose>-2.5 -2.5 0.003 0 0 0</pose>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>5.0 5.0 0.006</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>5.0 5.0 0.006</size></box></geometry>
+        <material><script>
+          <uri>model://mars_terrain_tex/materials/scripts</uri>
+          <uri>model://mars_terrain_tex/materials/textures</uri>
+          <name>Mars/Sand</name>
+        </script></material>
+      </visual>
+    </link>
+  </model>
+
+  <!-- Q4 rock hazard (x>0,y<0): 15x12 m centred at (7.5,-6.0)
+       spawns: (2.0,-4.0) rock_cluster, (2.0,-8.0) boulder_zone, rover faces +x -->
+  <model name="rock_ground">
+    <static>true</static>
+    <pose>2.5 -2.5 0.003 0 0 0</pose>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>5.0 5.0 0.006</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>5.0 5.0 0.006</size></box></geometry>
+        <material><script>
+          <uri>model://mars_terrain_tex/materials/scripts</uri>
+          <uri>model://mars_terrain_tex/materials/textures</uri>
+          <name>Mars/Rock</name>
+        </script></material>
+      </visual>
+    </link>
+  </model>
+
+  <!-- =================================================================
+       ROCK FIELD
+       Visual: mars_rock.dae mesh (realistic appearance)
+       Collision: sphere primitive (fast — avoids 21-mesh load delay)
+       sphere radius = scale * 0.65
+       pose: x y pose_z  roll pitch yaw
+  ================================================================= -->
+
+  <!-- Large boulders (scale 0.38-0.45) -->
+
+
+
+  <!-- Medium rocks near spawn1 (2.0,-4.0) facing +x -->
+
+
+
+
+
+  <!-- Medium rocks near spawn2 (2.0,-8.0) facing +x -->
+
+
+
+
+
+  <!-- =================================================================
+       OBSTACLE LAYOUT v2 (2026-08-19, author review of the v1 sanity
+       check): spawn moved to the map's true centre (0,0) — the corner
+       point where all 4 quadrants meet, since a 4-way cardinal sweep
+       means the corridor along +x/+y/-x/-y is what actually gets tested.
+       Two obstacle classes, all scale 0.6 (radius 0.39, collision top
+       0.249m — clears the 0.215m LiDAR mount height):
+       1) GUARANTEED-ENCOUNTER: one rock straight down each of the 4
+          sweep directions the rover checks from (0,0) — east/north/west/
+          south — at 2.0m out. Close enough that whichever heading the
+          FSM picks, that lane has a rock on it; far enough (2.0m, vs the
+          reactive_explorer's own [1.0, 0.3]m lookahead tiers) that the
+          rover has real room to detect and react rather than spawning
+          on top of it.
+       2) SCATTERED: 2-3 more rocks per quadrant further out (3.5m — well
+          inside the 5m quadrant edge, so a plausible rover path can
+          actually still reach them; not jammed into a corner it'll
+          never explore).
+       All clearances re-checked by script: zero rock-rock overlap, zero
+       rock within 5m of any zone spawn point closer than 1.5m, and every
+       rock kept >=1.5m from the ground-plane edge (see the ground-plane
+       margin note below).
+  ================================================================= -->
+
+  <!-- Guaranteed-encounter rocks, 2.0m out along each sweep direction -->
+  <model name="rock_ahead_E"><static>true</static><pose>2.0 0.0 -0.141 0 0.05 3.0</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <model name="rock_ahead_N"><static>true</static><pose>0.0 2.0 -0.141 0.05 0 1.4</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <model name="rock_ahead_W"><static>true</static><pose>-2.0 0.0 -0.141 0 0.1 5.5</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <model name="rock_ahead_S"><static>true</static><pose>0.0 -2.0 -0.141 0.1 0 2.2</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <!-- Scattered — soil_zone (x in [-5,0], y in [0,5]) -->
+  <model name="soil_obs_1"><static>true</static><pose>-3.5 3.5 -0.141 0 0.05 1.1</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <model name="soil_obs_2"><static>true</static><pose>-1.5 3.5 -0.141 0.05 0 2.4</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <!-- Scattered — bedrock_zone (x in [0,5], y in [0,5]) -->
+  <model name="bedrock_obs_1"><static>true</static><pose>1.5 3.5 -0.141 0 0.05 0.8</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <model name="bedrock_obs_2"><static>true</static><pose>3.5 3.5 -0.141 0.05 0 1.9</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <!-- Scattered — sand_zone (x in [-5,0], y in [-5,0]) -->
+  <model name="sand_obs_1"><static>true</static><pose>-3.5 -3.5 -0.141 0 0.05 2.0</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <model name="sand_obs_2"><static>true</static><pose>-1.5 -3.5 -0.141 0.05 0 0.5</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <!-- Scattered — rock_ground quadrant (x in [0,5], y in [-5,0]) -->
+  <model name="rockzone_obs_1"><static>true</static><pose>3.5 -3.5 -0.141 0 0.05 0.6</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <model name="rockzone_obs_2"><static>true</static><pose>1.5 -3.5 -0.141 0.05 0 3.4</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <model name="rockzone_obs_3"><static>true</static><pose>3.5 -1.5 -0.141 0 0.1 4.5</pose>
+    <link name="link">
+      <collision name="c"><geometry><sphere><radius>0.51</radius></sphere></geometry></collision>
+      <visual name="v"><geometry><mesh><uri>model://mars_rock/meshes/model.dae</uri><scale>0.6 0.6 0.6</scale></mesh></geometry>
+        <material><script><uri>model://mars_terrain_tex/materials/scripts</uri><uri>model://mars_terrain_tex/materials/textures</uri><name>Mars/Rock</name></script></material>
+      </visual></link></model>
+
+  <!-- Third-person "chase cam" per zone, for zone demo videos (2026-08-17).
+       Static camera fixed 4m behind + 3m above the zone spawn point, pitched
+       down ~20deg, facing +x (same direction the rover drives). Headless
+       gzserver still renders these offscreen — no GUI needed.
+       Topic: /gazebo_cam/<zone_name>/image_raw -->
+  <model name="thirdperson_cam_soil_zone"><static>true</static>
+    <!-- 2026-08-17 v2: rover now spawns facing -x (out of the map centre,
+         away from the rock quadrant). Camera moved to +x side of spawn,
+         facing -x (yaw pi) so it still chases from behind. Closer (3m) +
+         narrower FOV to minimise neighbour-zone bleed. -->
+    <pose>-1.5 2.5 2.6 0 0.45 3.1416</pose>
+    <link name="link">
+      <sensor type="camera" name="cam">
+        <update_rate>15</update_rate>
+        <camera name="c"><horizontal_fov>0.95</horizontal_fov>
+          <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+          <clip><near>0.05</near><far>300</far></clip>
+        </camera>
+        <plugin name="cam_plugin" filename="libgazebo_ros_camera.so">
+          <ros><namespace>/gazebo_cam/soil_zone</namespace></ros>
+          <camera_name>cam</camera_name>
+          <frame_name>soil_zone_cam_frame</frame_name>
+        </plugin>
+      </sensor>
+    </link>
+  </model>
+
+  <model name="thirdperson_cam_bedrock_zone"><static>true</static>
+    <!-- 2026-08-17 v2: closer (3m) + narrower FOV to minimise neighbour-zone
+         bleed. Rover keeps facing +x here - already out of the map centre. -->
+    <pose>1.5 2.5 2.6 0 0.45 0</pose>
+    <link name="link">
+      <sensor type="camera" name="cam">
+        <update_rate>15</update_rate>
+        <camera name="c"><horizontal_fov>0.95</horizontal_fov>
+          <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+          <clip><near>0.05</near><far>300</far></clip>
+        </camera>
+        <plugin name="cam_plugin" filename="libgazebo_ros_camera.so">
+          <ros><namespace>/gazebo_cam/bedrock_zone</namespace></ros>
+          <camera_name>cam</camera_name>
+          <frame_name>bedrock_zone_cam_frame</frame_name>
+        </plugin>
+      </sensor>
+    </link>
+  </model>
+
+  <model name="thirdperson_cam_sand_zone"><static>true</static>
+    <!-- 2026-08-17 v2: rover now spawns facing -x (out of the map centre,
+         away from the rock quadrant - this is what bled into rock_cluster
+         in the previous cut). Camera moved to +x side, facing -x (yaw pi).
+         Closer (3m) + narrower FOV to minimise neighbour-zone bleed. -->
+    <pose>-1.5 -2.5 2.6 0 0.45 3.1416</pose>
+    <link name="link">
+      <sensor type="camera" name="cam">
+        <update_rate>15</update_rate>
+        <camera name="c"><horizontal_fov>0.95</horizontal_fov>
+          <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+          <clip><near>0.05</near><far>300</far></clip>
+        </camera>
+        <plugin name="cam_plugin" filename="libgazebo_ros_camera.so">
+          <ros><namespace>/gazebo_cam/sand_zone</namespace></ros>
+          <camera_name>cam</camera_name>
+          <frame_name>sand_zone_cam_frame</frame_name>
+        </plugin>
+      </sensor>
+    </link>
+  </model>
+
+  <model name="thirdperson_cam_rock_cluster"><static>true</static>
+    <!-- 2026-08-17 v2: south of the spawn, inside the rock quadrant (x>0,y<0),
+         facing north toward the rover - distinct from boulder_zone's side-on
+         view. Rover drives straight toward rock_1 (3.5,-4.0, 1.5m ahead) then
+         swerves RIGHT/south (more open than the boulder_1/rock_2 cluster to
+         the north). Closer (2.5m) + narrower FOV to minimise bleed. -->
+    <pose>0.6667 -3.125 2.6 0 0.45 1.5708</pose>
+    <link name="link">
+      <sensor type="camera" name="cam">
+        <update_rate>15</update_rate>
+        <camera name="c"><horizontal_fov>0.95</horizontal_fov>
+          <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+          <clip><near>0.05</near><far>300</far></clip>
+        </camera>
+        <plugin name="cam_plugin" filename="libgazebo_ros_camera.so">
+          <ros><namespace>/gazebo_cam/rock_cluster</namespace></ros>
+          <camera_name>cam</camera_name>
+          <frame_name>rock_cluster_cam_frame</frame_name>
+        </plugin>
+      </sensor>
+    </link>
+  </model>
+
+  <model name="thirdperson_cam_boulder_zone"><static>true</static>
+    <!-- 2026-08-17 v3: east of the spawn, inside the rock quadrant (x>0,y<0),
+         facing west toward the rover - a side-on profile view, clearly
+         different from rock_cluster's north-facing view. Rover drives
+         straight toward boulder_2 (4.5,-8.0, 2.5m ahead) then swerves
+         LEFT/north (opposite of rock_cluster, for visual variety - rock_6
+         is close-ish there too but off to the side, not head-on).
+         v2 had the camera at 3.5m - too close, the rover's own approach
+         toward +x passed almost under the camera and dropped out of frame
+         near the bottom edge before the swerve had time to register. Pulled
+         back to 6m (matches rock_cluster's working framing distance). -->
+    <pose>2.6667 -3.3333 2.6 0 0.45 3.1416</pose>
+    <link name="link">
+      <sensor type="camera" name="cam">
+        <update_rate>15</update_rate>
+        <camera name="c"><horizontal_fov>0.95</horizontal_fov>
+          <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+          <clip><near>0.05</near><far>300</far></clip>
+        </camera>
+        <plugin name="cam_plugin" filename="libgazebo_ros_camera.so">
+          <ros><namespace>/gazebo_cam/boulder_zone</namespace></ros>
+          <camera_name>cam</camera_name>
+          <frame_name>boulder_zone_cam_frame</frame_name>
+        </plugin>
+      </sensor>
+    </link>
+  </model>
+
+</world>
+</sdf>

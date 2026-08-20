@@ -1,0 +1,2 @@
+model,hostname,platform,cpu,ram_total_gb,avg_ms,p50_ms,p95_ms,fps,avg_ram_mb,load_time_s,model_size_mb,n_measured
+dinov2_onnx,raspberrypi,Linux-6.18.34+rpt-rpi-v8-aarch64-with-glibc2.41,aarch64,8.2,569.897459349977,569.8082059999479,570.6694386498725,1.7547016285010226,258.418688,3.3,88,20

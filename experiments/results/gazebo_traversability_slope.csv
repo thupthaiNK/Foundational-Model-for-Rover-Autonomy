@@ -1,0 +1,4 @@
+position_label,x,y,spawn_z,ground_truth,pred,confidence,terrain_correct,consistent,n_readings,all_labels,expected_policy,expected_speed_ms,actual_speed_ms,speed_correct,mean_latency_ms,slope_angle_deg,description
+mid_slope,0.0,-20.0,1.7,soil,sand,0.555,False,True,8,"sand,sand,sand,sand,sand,sand,sand,sand",SAFE,0.1,0.05,False,784.4,15.0,15° inclined soil surface — DINOv2 texture-vs-geometry test
+lower_slope,0.0,-16.0,0.6,soil,sand,0.641,False,True,8,"sand,sand,sand,sand,sand,sand,sand,sand",SAFE,0.1,0.05,False,373.1,15.0,15° inclined soil surface — DINOv2 texture-vs-geometry test
+upper_slope,0.0,-22.5,2.2,soil,sand,0.546,False,True,8,"sand,sand,sand,sand,sand,sand,sand,sand",SAFE,0.1,0.05,False,426.3,15.0,15° inclined soil surface — DINOv2 texture-vs-geometry test

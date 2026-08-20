@@ -1,0 +1,6 @@
+zone,ground_truth,dinov2_pred,dinov2_conf,terrain_correct,consistent,n_readings,expected_trav,pred_trav,trav_correct,expected_speed_ms,actual_speed_ms,speed_correct,description,all_labels
+soil_zone,soil,soil,0.519,True,False,8,SAFE,SAFE,True,0.1,0.075,False,"Centre of soil zone Q2 (x<0,y>0) 15x12m — facing +x into open regolith","soil,soil,soil,soil,sand,sand,sand,sand"
+bedrock_zone,bedrock,bedrock,0.690,True,True,8,HAZARD,HAZARD,True,0.03,0.030,True,"Centre of bedrock zone Q1 (x>0,y>0) 15x12m — facing +x into cracked slab","bedrock,bedrock,bedrock,bedrock,bedrock,bedrock,bedrock,bedrock"
+sand_zone,sand,sand,0.715,True,True,8,CAUTION,CAUTION,True,0.05,0.050,True,"Centre of sand zone Q3 (x<0,y<0) 15x12m — facing +x into smooth sand","sand,sand,sand,sand,sand,sand,sand,sand"
+rock_cluster,big_rock,uncertain,0.662,False,True,8,STOP,STOP,True,0.0,0.000,True,"Inside rock zone Q4 — facing +x; boulder_1(4.5,-3.5) at 2.7m, 12 rocks in FOV","uncertain,uncertain,uncertain,uncertain,uncertain,uncertain,uncertain,uncertain"
+boulder_zone,big_rock,sand,0.700,False,True,8,STOP,CAUTION,False,0.0,0.050,False,"Inside rock zone Q4 — facing +x; boulder_2(4.5,-8.0) at 2.5m, 13 rocks in FOV","sand,sand,sand,sand,sand,sand,sand,sand"

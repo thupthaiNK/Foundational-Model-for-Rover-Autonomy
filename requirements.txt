@@ -1,0 +1,45 @@
+# Onboard Visual Foundation Models for Mars Terrain Perception and Rover Navigation — Python dependencies
+# Install with: pip install -r requirements.txt
+# Tested on: Python 3.10, Ubuntu 22.04 (WSL2), CPU-only (no CUDA required)
+#
+# ROS2 packages (rclpy, sensor_msgs, etc.) are installed via apt, not pip.
+# See docs/rpi_deployment_guide.md for full RPi setup instructions.
+
+# --- Core deep learning ---
+torch>=2.0.0                     # PyTorch (CPU build sufficient; CUDA optional)
+torchvision>=0.15.0
+
+# --- Foundation models ---
+open_clip_torch>=2.20.0          # CLIP ViT-B/32 (used in all CLIP experiments)
+transformers>=4.36.0             # SmolVLM-256M, BLIP-2 (HuggingFace)
+accelerate>=0.24.0               # Required by transformers for device_map loading
+sam2>=1.0.0                      # SAM2 segmentation (visualisation only)
+
+# --- ONNX inference (for CLIP ONNX export and RPi speedup) ---
+onnxruntime>=1.16.0              # CPU ONNX runtime (use onnxruntime-gpu for GPU)
+
+# --- Image processing ---
+Pillow>=9.0.0                    # PIL image loading and manipulation
+opencv-python-headless>=4.7.0    # OpenCV (headless — no GUI dependency)
+
+# --- Scientific computing ---
+numpy>=1.24.0                    # Array operations (note: cv_bridge incompatible with numpy>=2.0)
+scikit-learn>=1.2.0              # LogisticRegression for few-shot linear probe
+matplotlib>=3.6.0                # Figure generation
+pandas>=1.5.0                    # CSV result handling, experiment logging
+seaborn>=0.12.0                  # Plotting (reliability diagrams, confusion matrices)
+
+# --- System monitoring ---
+psutil>=5.9.0                    # RAM usage monitoring in rpi_benchmark.py
+
+# --- Experiment tracking (optional) ---
+# WARNING: wandb hangs on low-RAM machines under swap pressure.
+# Run experiments without --log on machines with <8GB RAM.
+wandb>=0.15.0
+
+# --- Notes ---
+# bitsandbytes is NOT included: INT4/INT8 quantisation requires CUDA GPU.
+#   On CPU-only machines, use float16 for BLIP-2 (--cpu flag).
+# jinja2>=3.1.0 is required by transformers apply_chat_template (Phi-3-V, SmolVLM).
+#   Install with: pip install "jinja2>=3.1.0"
+jinja2>=3.1.0
