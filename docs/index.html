@@ -13,9 +13,12 @@
               small Mars rover is allowed to drive. AI4Mars is grayscale NAVCAM imagery,
               so the honest palette is grey, not red-planet orange.
   Colour    : cool paper ground, ink near-black, neutrals biased cool toward the accent;
-              one accent (instrument teal) for navigation and emphasis; one signal amber
-              reserved for the model's own outputs; a separate semantic set for the four
-              driving tiers, because those colours mean something specific.
+              one accent (instrument navy, matched to the thesis presentation deck) for
+              navigation and emphasis; one signal amber reserved for the model's own
+              outputs; a separate semantic set for the four driving tiers, because those
+              colours mean something specific. Mars/safe/caution are pulled from the
+              deck's own palette (D93025 / 1E8E3E / E37400) so the site, deck and poster
+              read as one visual family rather than three independent designs.
   Type      : no display face. Personality comes from scale, tight heading tracking, a
               tabular mono for every measured number, and mono uppercase eyebrows. The
               same stack has to carry Thai and English, so both scripts stay consistent.
@@ -64,16 +67,16 @@
     --muted: #4C5654;
     --faint: #7B8481;
     --rule: #E2E6E3;
-    --accent: #0F6E63;
-    --accent-soft: #E4F0ED;
-    --pill: #1B2422;
+    --accent: #1D5C92;
+    --accent-soft: #E8F0F7;
+    --pill: #0C406D;
     --pill-ink: #FFFFFF;
     --signal: #B26A16;
     --signal-soft: #FBF2E4;
     --earth: #1A73E8;
     --mars: #D93025;
-    --safe: #3B6F4B;
-    --caution: #B58017;
+    --safe: #1E8E3E;
+    --caution: #B5651D;
     --hazard: #A85320;
     --stop: #9C2B2B;
     --shadow: 0 1px 2px rgba(16, 20, 19, .05), 0 10px 28px -18px rgba(16, 20, 19, .3);
@@ -104,16 +107,16 @@
       --muted: #A6AFAB;
       --faint: #7E8783;
       --rule: #2A3132;
-      --accent: #46B8A8;
-      --accent-soft: #16302E;
+      --accent: #5B9BD5;
+      --accent-soft: #16283A;
       --pill: #E8ECE9;
       --pill-ink: #10151B;
       --signal: #E0A055;
       --signal-soft: #2A2015;
       --earth: #6BA6F5;
       --mars: #F2685E;
-      --safe: #6FB183;
-      --caution: #D9AC4E;
+      --safe: #4FC26B;
+      --caution: #E8A34D;
       --hazard: #D2814D;
       --stop: #D46A6A;
       --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 30px -18px rgba(0, 0, 0, .8);
@@ -664,10 +667,10 @@
 
     <div class="resources">
       <a class="res" href="files/thesis.pdf"><b><span data-lang-en>Report</span><span data-lang-th>เล่มวิทยานิพนธ์</span></b><span class="res-note"><span data-lang-en>132 pages</span><span data-lang-th>132 หน้า</span></span></a>
-      <a class="res" href="files/defence_slides.pdf"><b><span data-lang-en>Presentation</span><span data-lang-th>สไลด์นำเสนอ</span></b><span class="res-note"><span data-lang-en>47 slides</span><span data-lang-th>47 สไลด์</span></span></a>
+      <a class="res" href="files/presentation.pdf"><b><span data-lang-en>Presentation</span><span data-lang-th>สไลด์นำเสนอ</span></b><span class="res-note"><span data-lang-en>50 slides</span><span data-lang-th>50 สไลด์</span></span></a>
       <a class="res" href="files/poster_a1.pdf"><b><span data-lang-en>Poster</span><span data-lang-th>โปสเตอร์</span></b><span class="res-note"><span data-lang-en>A1</span><span data-lang-th>ขนาด A1</span></span></a>
       <a class="res" href="https://github.com/thupthaiNK/Foundational-Model-for-Rover-Autonomy" target="_blank" rel="noopener"><b><span data-lang-en>Code</span><span data-lang-th>โค้ด</span></b><span class="res-note"><span data-lang-en>GitHub</span><span data-lang-th>GitHub</span></span></a>
-      <a class="res" href="https://www.youtube.com/playlist?list=PLWlI8ZIzh2Es" target="_blank" rel="noopener"><b><span data-lang-en>Video</span><span data-lang-th>วิดีโอ</span></b><span class="res-note"><span data-lang-en>8 hardware runs</span><span data-lang-th>วิ่งจริง 8 รอบ</span></span></a>
+      <a class="res" href="https://www.youtube.com/playlist?list=PLWlI8ZIzh2Es" target="_blank" rel="noopener"><b><span data-lang-en>Video</span><span data-lang-th>วิดีโอ</span></b><span class="res-note"><span data-lang-en>30 videos</span><span data-lang-th>วิดีโอ 30 คลิป</span></span></a>
     </div>
 
     <p class="lede">
@@ -1325,13 +1328,13 @@
 
         <figure>
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/videoseries?list=PLWlI8ZIzh2Es" title="Eight autonomous ExoMy hardware runs"
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLWlI8ZIzh2Es" title="ExoMy hardware runs and Gazebo simulation videos"
                 allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture"
                 allowfullscreen loading="lazy"></iframe>
       </div>
       <figcaption>
-        <span data-lang-en>Eight autonomous runs recorded on 4 August 2026. Seven are in the sandpit; the last is on a laboratory floor against everyday objects, a different visual and geometric problem. The rover was under autonomous control throughout, with no operator input.</span>
-        <span data-lang-th>โรเวอร์วิ่งเองแปดรอบ บันทึกไว้เมื่อ 4 สิงหาคม 2026 เจ็ดรอบแรกอยู่ในบ่อทราย รอบสุดท้ายย้ายมาบนพื้นห้องแล็บกับข้าวของทั่วไป ซึ่งเป็นโจทย์คนละแบบทั้งเรื่องภาพและรูปทรง ทุกรอบโรเวอร์คุมตัวเองทั้งหมด ไม่มีคนสั่ง</span>
+        <span data-lang-en>Thirty videos in four groups: eight autonomous hardware runs recorded on 4 August 2026, six onboard-camera views reconstructed from the rosbag recordings of those same sessions together with two longer extras, twelve recordings of the Gazebo benchmark world, and two recordings of a later mixed-obstacle sensor-validation sanity check (single run, not a quantitative result). Seven of the eight hardware runs are in the sandpit; the last is on a laboratory floor against everyday objects, a different visual and geometric problem. The rover was under autonomous control throughout, with no operator input.</span>
+        <span data-lang-th>วิดีโอ 30 คลิป แบ่งเป็นสี่กลุ่ม ได้แก่ โรเวอร์วิ่งเองแปดรอบ บันทึกไว้เมื่อ 4 สิงหาคม 2026 ภาพจากกล้องบนตัวโรเวอร์อีกหกคลิปที่กู้จาก rosbag ของรอบเดียวกัน พร้อมคลิปยาวพิเศษอีกสองคลิป คลิปจากโลกจำลอง Gazebo อีกสิบสองคลิป และคลิปตรวจสอบ sensor เพิ่มเติมภายหลังอีกสองคลิป (รันครั้งเดียว ไม่ใช่ผลเชิงปริมาณ) ในแปดรอบฮาร์ดแวร์นั้น เจ็ดรอบแรกอยู่ในบ่อทราย รอบสุดท้ายย้ายมาบนพื้นห้องแล็บกับข้าวของทั่วไป ซึ่งเป็นโจทย์คนละแบบทั้งเรื่องภาพและรูปทรง ทุกรอบโรเวอร์คุมตัวเองทั้งหมด ไม่มีคนสั่ง</span>
       </figcaption>
     </figure>
   </section>
